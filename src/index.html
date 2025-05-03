@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>SRC Comparisons</title>
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+<script src="IW1.js@v=2.1.1"></script>
+<script>
+var LoadingImage = new Image;
+LoadingImage.src = "images/Loading.png";
+var NumSRC = 376 - 1; 
+var tWhere = gup('Top');
+var bWhere = gup('Bot');
+var Spec = false;    
+function Top_MC(){
+	e = document.getElementById("topImage");
+	e.src = LoadingImage.src;
+	change_Top_Pic();
+	if (document.subPane2.matchTop_dm.checked == true){
+		document.subPane2.bMode.value = document.subPane1.tMode.value;
+		change_Bottom_Pic();
+	}
+}
+function Bot_MC(){
+	e = document.getElementById("bottomImage");
+	e.src = LoadingImage.src;
+	change_Bottom_Pic();
+	if (document.subPane2.matchTop_dm.checked == true){
+		document.subPane1.tMode.value = document.subPane2.bMode.value;
+		change_Top_Pic();
+	}
+}
+function tPack_C(){
+	e = document.getElementById("topImage");
+	e.src = LoadingImage.src;
+	change_Top_Pic();
+	if (document.subPane2.matchTop_pack.checked == true){
+		document.subPane2.bPack.value = document.subPane1.tPack.value;
+		change_Bottom_Pic();	
+	}
+}
+function bPack_C(){
+	e = document.getElementById("bottomImage");
+	e.src = LoadingImage.src;
+	change_Bottom_Pic();
+	if (document.subPane2.matchTop_pack.checked == true){
+		document.subPane1.tPack.value = document.subPane2.bPack.value;
+		change_Top_Pic();
+	}
+}
+function matchTop_Ch(){
+	Top_MC();
+}
+function matchTopPack_Ch(){
+	tPack_C();
+}
+function change_Top_Pic(){
+    var topPic = document.subPane1.tMode.value + document.subPane1.tPack.value;
+    e = document.getElementById("topImage");
+	e.src = topPic;
+	if ((document.subPane1.tMode.value == "images/Sweep/")||(document.subPane2.bMode.value == "images/Sweep/")){
+		e = document.getElementById("chart1");
+		e.src = "images/MagsChart.png";
+	} else{
+		e = document.getElementById("chart1");
+		e.src = "images/BlankChart.jpg";
+	}	
+}
+function change_Bottom_Pic(){
+	var bottomPic = document.subPane2.bMode.value + document.subPane2.bPack.value;
+	e = document.getElementById("bottomImage");
+	e.src = bottomPic;
+	if ((document.subPane1.tMode.value == "images/Sweep/")||(document.subPane2.bMode.value == "images/Sweep/")){
+		e = document.getElementById("chart1");
+		e.src = "images/MagsChart.png";
+	} else{
+		e = document.getElementById("chart1");
+		e.src = "images/BlankChart.jpg";
+	}
+}
+function but_TopNext(){
+	a = document.subPane1.tPack.selectedIndex + 1;
+	if (a > NumSRC) {a = 0;}
+	document.subPane1.tPack.selectedIndex = a;
+	tPack_C();	
+}
+function but_TopPrev(){
+	a = document.subPane1.tPack.selectedIndex - 1;
+	if (a < 0) {a = NumSRC;}
+	document.subPane1.tPack.selectedIndex = a;
+	tPack_C();	
+}
+function but_BotNext(){
+	a = document.subPane2.bPack.selectedIndex + 1;
+	if (a > NumSRC) {a = 0;}
+	document.subPane2.bPack.selectedIndex = a;
+	bPack_C();	
+}
+function but_BotPrev(){
+	a = document.subPane2.bPack.selectedIndex - 1;
+	if (a < 0) {a = NumSRC;}
+	document.subPane2.bPack.selectedIndex = a;
+	bPack_C();	
+}
+function gup( name ){  
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
+	var regexS = "[\\?&]"+name+"=([^&#]*)";  
+	var regex = new RegExp( regexS );  
+	var results = regex.exec( window.location.href );  
+	if( results == null )    
+		return "";  
+	else    
+		return results[1];
+}
+function loadSaved(){
+    var a, b, c, d;
+    a = parseInt(Spec.charAt(0)); b=parseInt(Spec.charAt(1)); c=parseInt(Spec.charAt(2)); d=parseInt(Spec.charAt(3));
+    if (a){document.subPane2.matchTop_pack.checked = true;}else{document.subPane2.matchTop_pack.checked = false;}
+    if (b){document.subPane2.matchTop_dm.checked = true;}else{document.subPane2.matchTop_dm.checked = false;}
+    document.subPane1.tMode.selectedIndex = c;
+    var temp = document.getElementById('tPack');
+    temp.value = tWhere + ".png";
+    document.subPane2.bMode.selectedIndex = d;
+    temp = document.getElementById('bPack');
+    temp.value = bWhere + ".png";
+    
+    tPack_C();
+    bPack_C();
+}
+function Feed(){
+    if (Spec){
+        loadSaved();
+    }else{
+        if (tWhere=="" && bWhere==""){ //Make a reandom selection for both upper and lower slots
+            var tRandom = (Math.floor(Math.random() * NumSRC/2))+1;
+            var bRandom = Math.floor((NumSRC/2) + (Math.random() * ((NumSRC/2)+1)));
+            document.subPane1.tPack.selectedIndex = tRandom;
+            document.subPane2.bPack.selectedIndex = bRandom;    
+            tPack_C();
+            bPack_C();
+       }
+        if (tWhere != "") {
+            tWhere += ".png";
+            document.subPane1.tPack.value = tWhere;
+            if (bWhere == ""){
+                document.subPane2.matchTop_pack.checked=true;
+                document.subPane2.matchTop_dm.checked=false;
+                document.subPane2.bMode.value = "images/Tone/";
+                tPack_C();
+            }else{
+                bWhere += ".png";
+                document.subPane2.bPack.value = bWhere;
+                tPack_C();
+                bPack_C();
+            }	
+        }
+    }
+}
+function copyIt(){
+    var a, b, c, d;
+    if (document.subPane2.matchTop_pack.checked){a = 1;}else{a=0;}
+    if (document.subPane2.matchTop_dm.checked){b = 1;}else{b=0;}
+    c = document.subPane1.tMode.selectedIndex;
+    d = document.subPane2.bMode.selectedIndex;
+    var copyText = "https://megapro17.github.io/src/index.html?Top=" + document.subPane1.tPack.value.substring(0, document.subPane1.tPack.value.length-4) + "&Bot=" + document.subPane2.bPack.value.substring(0, document.subPane2.bPack.value.length-4);
+    copyText += "&Spec=" + a+b+c+d;
+    var bucket = document.createElement('textarea');
+    bucket.value = copyText;
+    bucket.setAttribute('readonly', '');
+    bucket.style = {position: 'absolute', left: '-9999px'};
+    document.body.appendChild(bucket);
+    bucket.select();
+    document.execCommand('copy');
+    document.body.removeChild(bucket);
+    alert("Link sent to the clipboard.");
+}
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113472624-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-113472624-1');
+</script>
+</head>
+<body onload="Feed();">
+    <table style="width:1072px; padding: 0px; border-spacing:0px; border:none; vertical-align:top; position:absolute; top: 0px;">
+    	<tr class="header">
+      		<td style="height: 80px;">
+                <div class="menu"><img src="images/MenuBG.jpg" style="width:430px; height:34px; border: 0px; " usemap="#menuMap" alt="Menu Background"></div>
+            </td>
+      	</tr>
+    </table>
+
+	<div id="content" style="text-align: center;">&nbsp;</div>
+	<div id="topctl">
+		<form name="subPane1">
+			<table style="padding:0px; border-spacing: 0px; border: none;">
+				<tr>
+					<td><label>Converter</label>
+					</td>
+					<td>
+						<select name="tPack" id="tPack" onChange="tPack_C()" tabindex="4">
+							<option selected value="Live10.png">Ableton Live 10.1</option>
+							<option value="Live973.png">Ableton Live 9.73</option>
+							<option value="Live911.png">Ableton Live 9.11</option>
+							<option value="Live903_HiQ.png">Ableton Live 9.03</option>
+							<option value="Live82.png">Ableton Live 8.2</option>
+							<option value="Ableton7_HQ.png">Ableton Live 7, 8 High Quality</option>
+							<option value="Ableton.png">Ableton Live 7</option>
+							<option value="Acoustica74.png">Acon Digital Acoustica 7.4</option>
+                            <option value="Acoustica73.png">Acon Digital Acoustica 7.3</option>
+							<option value="Acoustica7051.png">Acon Digital Acoustica 7.0.51</option>
+							<option value="Acoustica7.png">Acon Digital Acoustica 7</option>
+							<option value="Audition14.png">Adobe Audition 14</option>
+							<option value="Audition2019.png">Adobe Audition 2019</option>
+							<option value="Audition2018_filter.png">Adobe Audition CC 2018 (filter)</option>
+                            <option value="Audition2018_nofilter.png">Adobe Audition CC 2018 (no filter)</option>
+                            <option value="Audition10.png">Adobe Audition 10</option>
+							<option value="Audition55.png">Adobe Audition 5.5 And CS6</option>
+							<option value="Audition3_NPF.png">Adobe Audition 3 No Pre/Post Filter</option>
+							<option value="Audition3_PF.png">Adobe Audition 3 Pre/Post Filter</option>
+							<option value="Audition15_NPF.png">Adobe Audition 2 No Pre/Post Filter</option>
+							<option value="Audition15_PF.png">Adobe Audition 2 Pre/Post Filter</option>
+							<option value="AdobeMC.png">Adobe CS6 Media Encoder</option>
+							<option value="Afconvert_norm.png">Afconvert (Normal)</option>
+							<option value="Afconvert_bats.png">Afconvert (Bats)</option>
+							<option value="AIMP36_Q5.png">AIMP 3.60.1465 (Quality 5)</option>
+							<option value="Amadeus242.png">Amadeus Pro 2.4.2</option>
+							<option value="Amadeus.png">Amadeus Pro 2.1.3</option>
+							<option value="Ardour5.png">Ardour 5</option>
+							<option value="Anytime11.png">Anytime 1.1</option>
+							<option value="Anytime.png">Anytime 1.0</option>
+							<option value="Tiger.png">Apple CoreAudio (Tiger)</option>
+							<option value="Leopard.png">Apple CoreAudio (Leopard)</option>
+							<option value="Ardour35.png">Ardour 3.5.403</option>
+							<option value="Audacity3.png">Audacity 3 (Best Quality)</option>
+							<option value="Audacity242.png">Audacity 2.4.2 (Best Quality)</option>
+							<option value="Audacity203.png">Audacity 2.0.3 (Best Quality)</option>
+							<option value="Audacity200_HQ.png">Audacity 2.0 (High Quality)</option>
+							<option value="Audacity139_Best.png">Audacity 1.39 (Best)</option>
+							<option value="Audacity139_Medium.png">Audacity 1.39 (Medium)</option>
+							<option value="AudioMastering.png">Audio Mastering (ios)</option>
+							<option value="Audiomove.png">Audiomove 1.2 (Best)</option>
+							<option value="ART_Preset2.png">Audio Resampling Tool (ART) 0.1 (preset 2)</option>
+                            <option value="ART_preset3.png">Audio Resampling Tool (ART) 0.1 (preset 3)</option>
+                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>    
+                            <option value="AuIConvert.png">AuI Converter 48x44 Pro &amp; Free v.1.5</option>
+                            <option value="Aui121.png">AuI Converter 48x44 Free v.1.2.1.0</option>
+                            <option value="AWaveStudio103.png">Awave Studio 10.3</option>
+							<option value="Barbabatch.png">Barbabatch</option>
+							<option value="PeakPro603.png">Bias Peak Pro 6.03</option>
+							<option value="PeakPro52.png">Bias Peak Pro 5.2</option>
+							<option value="Bitwig24.png">Bitwig 2.4.3</option>
+							<option value="Bitwig214.png">Bitwig 2.1.4</option>
+							<option value="Bitwig13.png">Bitwig 1.3.15</option>
+							<option value="Brick10.png">Brick 1.0</option>
+							<option value="CamillaDSP_c089.png">Camilla DSP</option>
+							<option value="MacChrome125.png">Google Chrome 125 (on Mac)</option>
+							<option value="Cubase14.png">Cubase14</option>
+							<option value="Cubase10b.png">Cubase 10</option>
+							<option value="Cubase95.png">Cubase 9.5</option>
+							<option value="Cubase4.png">Cubase 4, 5, 6, 7, 8 and 9</option>
+							<option value="dBPowerAmp17.png">dBPowerAmp 17 Beta</option>
+							<option value="dBPowerAmp.png">dBpoweramp Music Converter 15.1</option>
+							<option value="DCF8.png">Diamond Cut Forensics 8 Audio Laboratory</option>
+							<option value="DP11.png">Digital Performer 11</option>
+							<option value="DP9.png">Digital Performer 8 &amp; 9</option>
+							<option value="DP7.png">Digital Performer 7</option>
+							<option value="DP6.png">Digital Performer 6</option>
+							<option value="DigitalPerformer51.png">Digital Performer 5.1</option>
+							<option value="DspQuattro.png">DSP-Quattro 4.2.2</option>
+							<option value="DspQuattro.png">DSP-Quattro 3.5.1</option>
+							<option value="DspQuattro.png">DSP-Quattro 2.5.1 (Excellent)</option>
+							<option value="EAC3TO.png">eac3to (SSRC)</option>
+							<option value="EZCD91.png">EZ CD Audio Converter 9.1</option>
+							<option value="EZCD83_steep.png">EZ CD Audio Converter 8.3 Steep</option>
+							<option value="EZCD83_steepaliasing.png">EZ CD Audio Converter 8.3 Steep Aliasing</option>
+							<option value="EZCD83_default.png">EZ CD Audio Converter 8.3 Default</option>
+							<option value="EZCD83_defaultaliasing.png">EZ CD Audio Converter 8.3 Default Aliasing</option>
+							<option value="EZCD8_Opus5.png">EZ CD Audio Converter 8.0.6 Opus/Speex - Quality 5</option>
+							<option value="EZCD_Opus10.png">EZ CD Audio Converter 8.0.6 Opus/Speex - Quality 10</option>
+							<option value="EZCD8_SoxHigh.png">EZ CD Audio Converter 8.0.6 SoX - High Quality</option>
+							<option value="EZCD8_SoxVeryHigh.png">EZ CD Audio Converter 8.0.6 SoX - Very High Quality</option>
+							<option value="Poikosoft221.png">EZ CD Audio Converter 2.2.1</option>
+							<option value="Ferocious_std.png">Ferocious ReSampler - Standard</option>
+                            <option value="Ferocious_min.png">Ferocious ReSampler - Minimum Phase</option>
+                            <option value="Ferocious_steep.png">Ferocious ReSampler - Steep</option>
+                            <option value="FFMPEG_SoXrMaxPrecision.png">ffmpeg 7.1 (soxr)</option>
+                            <option value="FFMPEG_SoXrMaxPrecisionCheby.png">ffmpeg 7.1 (soxr Cheby)</option>
+							<option value="FFMPEG_SWR.png">ffmpeg 7.1 (swr)</option>
+							<option value="FFMPEG422_soxr.png">ffmpeg 4.2.2 (soxr)</option>
+							<option value="FFMPEG422_swr.png">ffmpeg 4.2.2 (swr)</option>
+							<option value="FFMPEG34_swr.png">ffmpeg 3.4.2 (swr)</option>
+                            <option value="ffmpeg111_soxr.png">ffmpeg 1.1.1 (soxr)</option>
+                            <option value="ffmpeg111_swr.png">ffmpeg 1.1.1 (swr)</option>
+                            <option value="ffmpeg.png">ffmpeg 0.10.4</option>
+                            <option value="FinalCD017_Goldilocks.png">FinalCD 0.17 (&quot;Goldilocks&quot; Medium Filter)</option>
+                            <option value="FinalCD016_Gentle.png">FinalCD 0.12 -&gt; 0.16 (Gentle)</option>
+                            <option value="FinalCD012.png">FinalCD 0.12 -&gt; 0.16 (Sharp)</option>
+                            <option value="MacFirefox126.png">Mozilla Firefox 126 (on Mac)</option>
+							<option value="Fission2.png">Fission 2.4.1</option>
+							<option value="Edison.png">FL Studio 7 (and Edison)</option>
+							<option value="FLStudio8.png">FL Studio 8 (and Edison)</option>
+							<option value="EdisonFL10.png">FL Studio 10 (and Edison)</option>
+							<option value="FLStudio10_Herm6.png">FL Studio 10 (6 Point Hermite)</option>
+							<option value="FLStudio10_Sinc512.png">FL Studio 10 (512 Point Sinc)</option>
+							<option value="FLStudio11_Sinc512.png">FL Studio 11 (512 point sync)</option>
+							<option value="FLStudio12_Sinc512.png">FL Studio 12 (512 point sync)</option>
+							<option value="EdisonFL20.png">FL Studio 20.1.2.877</option>
+							<option value="Foobar2000RetroArch_Highest.png">foobar2000 RetroArch (Highest)</option>
+							<option value="Foobar2000RetroArch_Normal.png">foobar2000 RetroArch (Normal)</option>
+							<option value="Foobar2000.png">fooBar2000</option>
+							<option value="FooDsp_SSRCXultra.png">FooDsp SSRCX Ultra</option>
+							<option value="FooDsp_SSRCXhigh.png">FooDsp SSRCX High</option>
+							<option value="FooDsp_SSRCXdefault.png">FooDsp SSRCX Default</option>
+							<option value="FooDsp_SSRC198.png">FooDsp SSRC 198</option>
+							<option value="FooDsp_SSRC120.png">FooDsp SSRC 120</option>
+							<option value="FooDsp_SoX198.png">FooDsp SOX 198</option>
+							<option value="FooDsp_SoX120.png">FooDsp SOX 120</option>
+							<option value="FooDsp_PPHSUltra.png">FooDsp PPHS Ultra</option>
+							<option value="FooDsp_PPHS.png">FooDsp PPHS</option>
+							<option value="FooDsp_MS_Sinc.png">FooDsp Multiresampler Sinc</option>
+							<option value="FooDsp_MS_Blep.png">FooDsp Multiresampler Blep</option>
+							<option value="FooDsp_MS_Blam.png">FooDsp Multiresampler Blam</option>
+							<option value="FooDsp_MediumSinc.png">FooDsp Medium Sinc</option>
+							<option value="FooDsp_FastestSinc.png">FooDsp Fastest Sinc</option>
+							<option value="FooDsp_BestSinc.png">FooDsp Best Sinc</option>
+							<option value="FooDspdBPowerAmp.png">FooDsp dBPowerAmp mode</option>
+							<option value="FooDsp083.png">foo_dsp_resampler</option>
+							<option value="Frankl.png">Frankl resample_soxr (phase=45 v0.8)</option>
+							<option value="FScape_FIR.png">FScape 0.66</option>
+							<option value="FScape_FIRint.png">FScape 0.66 (int)</option>
+							<option value="GoldWave67.png">Gold Wave 6.7</option>
+                            <option value="GoldWave558.png">Gold Wave 5.58</option>
+							<option value="GoldWave.png">Gold Wave 5.18</option>
+							<option value="GoodHertz_LP.png">Goodhertz SRC (Linear Phase)</option>
+							<option value="GoodHertz_MP.png">Goodhertz SRC (Minimum Phase)</option>
+							<option value="Hawksford2.png">Hawksford Spectral Domain</option>
+							<option value="Hofa16.png">Hofa CD Burn &amp; DDP 1.6.10</option>
+							<option value="Hofa20.png">Hofa CD Burn &amp; DDP 2.0.4</option>
+							<option value="SuperVP.png">IRCAM  SuperVP (Default)</option>
+							<option value="SuperVP_ResS160.png">IRCAM  SuperVP (160dB SNR)</option>
+							<option value="iZotope_USNA.png">iZotope 64 bit SRC Steep, No Alias</option>
+							<option value="iZotope_IP.png">iZotope 64 bit SRC Intermed. Phase</option>
+							<option value="RX81_Default.png">iZotope RX 8.1 (Default)</option>
+							<option value="RX81_InterPhase.png">iZotope RX 8.1 (Intermediate phase)</option>
+							<option value="RX7_SteepMP.png">iZotope RX 7 (MP, steepness = 2000, cutoff = 0.99)</option>
+							<option value="RX6.png">iZotope RX 6</option>
+							<option value="RX_1300.png">iZotope RX Adv 2 (High Steepness)</option>
+							<option value="RX_ip.png">iZotope RX Adv 2 (Intermediate Phase)</option>
+							<option value="JRiver18.png">JRiver 18</option>
+							<option value="JUCE153.png">JUCE 2.0.13 (C++ Library)</option>
+							<option value="KFR3.png">KFR 3.0.2 (high quality preset)</option>
+							<option value="Audiogate4.png">Korg Audiogate 4</option>
+							<option value="Korg.png">Korg AudioGate</option>
+							<option value="LakePeople.png">Lake People DAT RS 05</option>
+							<option value="libfsrc.png">libfsrc (alpha)</option>
+							<option value="LMMS121_SincBest1x.png">LMMS 1.2.1 (SincBest1x)</option>
+							<option value="LMMS121_SincBest8x.png">LMMS 1.2.1 (SincBest8x)</option>
+							<option value="Logic.png">Logic 7.2.3</option>
+							<option value="Logic8Leopard.png">Logic 8 (Leopard)</option>
+							<option value="Logic8Tiger.png">Logic 8 (Tiger)</option>
+							<option value="Logic902.png">Logic 9 And 9.17 (Leopard, Snow Leopard)</option>
+							<option value="LogicX.png">Logic 10.1.4</option>
+							<option value="LogicXMavericks.png">Logic X OSX Mavericks</option>
+							<option value="LogicProIPad.png">Logic Pro for IPad</option>
+                            <option value="LogicPro116.png">Logic Pro 10.6.2</option>
+							<option value="Logic103.png">Logic Pro X 10.3.2</option>
+							<option value="Lurssen.png">Lurssen Mastering Console (24bit)</option>
+							<option value="MainConceptTCS53.png">MainConcept TotalCode Studio 5.3.0</option>
+                            <option value="Matlab.png">Matlab R2014a (resample function)</option>
+							<option value="Matlab_SRC.png">MATLAB - dsp.SampleRateConverter</option>
+							<option value="Matlab_FIRRC.png">MATLAB - dsp.FIRRateConverter</option>
+							<option value="AMR.png">Merging AMR</option>
+							<option value="AWE.png">Minnetonka AWE</option>
+							<option value="Mixbus.png">Harrison Mixbus 2.1</option>
+							<option value="Mixpad.png">NHC MixPad</option>
+							<option value="MytekStereo192_ANSC.png">Mytek Stereo 192SRC (Async)</option>
+							<option value="MytekStereo192_SNC.png">Mytek Stereo 192SRC (Sync)</option>
+							<option value="Myriad44.png">Myriad 4.4.1</option>
+							<option value="Myriad46_Apple.png">Myriad 4.6.0 (Apple)</option>
+							<option value="Myriad46_Zynaptic.png">Myriad 4.6.0 (Zynaptic)</option>
+							<option value="Kontakt5.png">Native Instruments Kontakt 5.7.1 R35</option>
+							<option value="NeroWaveEditor12_Accurate.png">Nero Wave Editor 12.0.4 (Accurate)</option>
+							<option value="NeroWaveEditor12_Average.png">Nero Wave Editor 12.0.4 (Average)</option>
+							<option value="NeroWaveEditor12_Fast.png">Nero Wave Editor 12.0.4 (Fast)</option>
+							<option value="Nero10_Accurate.png">Nero Wave Editor 10 (Accurate)</option>
+							<option value="Nero10_SaveAs.png">Nero Wave Editor 10 (Save As)</option>
+							<option value="Nuendo13.png">Nuendo 13</option>
+							<option value="Nuendo12.png">Nuendo 12</option>
+							<option value="Nuendo11.png">Nuendo 11</option>
+							<option value="Nuendo5.png">Nuendo 3.0, 4.0 and 5.0</option>
+							<option value="Nykiel14.png">Nykiel iSRC 1.4</option>
+							<option value="Ocenaudio.png">Ocenaudio</option>
+							<option value="OpenMPT_Blackman.png">OpenMPT (Blackman)</option>
+							<option value="OpenMPT_Kaiser.png">OpenMPT (Kaiser)</option>
+							<option value="OpenMPT_Polyphase.png">OpenMPT (Polyphase)</option>
+							<option value="Pipewire_Q4.png">Pipewire 0.3.47 (Quality 4)</option>
+							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>	
+							<option value="Pipewire_Q1.png">Pipewire (Quality 1)</option>
+							<option value="Pipewire_4.png">Pipewire (Quality 4)</option>
+                            <option value="Pipewire_10.png">Pipewire (Quality 10)</option>
+                            <option value="Pipewire_Q14.png">Pipewire Quality 14)</option>
+							<option value="PresonusABC.png">PreSonus Audio Batch Converter (6.0.1.90430)</option>
+                            <option value="ProAudioConverter.png">Pro Audio Converter from Mark V Apps</option>
+							<option value="ProTools2021.png">ProTools 2021</option>
+							<option value="ProTools2019_bounce.png">ProTools 2019 (bounce)</option>
+                            <option value="ProTools2019_import.png">ProTools 2019 (import)</option>
+                            <option value="ProTools2018.png">Pro Tools 2018</option>
+							<option value="ProToolsHD10.png">Pro Tools HD 10.3.5</option>
+							<option value="ProToolsHD72.png">Pro Tools HD 7.2</option>
+							<option value="ProToolsHD72.png">Pro Tools LE 8.0.3</option>
+							<option value="PureMusic.png">Pure Music 2.0.1</option>
+							<option value="Pyramix.png">Pyramix 6.2.3 (Offline and Realtime)</option>
+							<option value="Pyramix7_AP.png">Pyramix 7 (Apodizing Filter)</option>
+							<option value="Pyramix818_Lin.png">Pyramix 8.1.8 (Linear Phase)</option>
+							<option value="Pyramix818_Min.png">Pyramix 8.1.8 (Minimum Phase)</option>
+							<option value="Pyramix818_AP.png">Pyramix 8.1.8 (Apodizing Filter)</option>
+							<option value="Pyramix10.png">Pyramix 10</option>
+							<option value="QuickTimePro766.png">QuickTime Pro 7.6.6</option>
+							<option value="r8brainPro_PreciseLinPhase.png">r8brain Pro 2.12 (PreciseLP)</option>
+							<option value="r8brainPro_PreciseMinPhase.png">r8brain Pro 2.12 (PreciseMP)</option>
+                            <option value="r8brainPro29_FastLP.png">r8brain Pro 2.9 (FastLP)</option>
+                            <option value="r8brainPro29_PrecideLP.png">r8brain Pro 2.9 (PreciseLP)</option>
+                            <option value="r8brainPro29_PreciseMP.png">r8brain Pro 2.9 (PreciseMP)</option>
+                            <option value="r8brain2.png">r8brain Free 2.0</option>
+							<option value="R8brainFree19.png">r8brain Free 1.9</option>
+							<option value="r8brainProNS_lin.png">r8brain Pro 1.5 Linear Phase</option>
+							<option value="r8brainProNS_min.png">r8brain Pro 1.5 Minimum Phase</option>
+							<option value="r8brainpro_lin.png">r8brain Pro 1.5 Linear Phase (Ultra Steep)</option>
+							<option value="r8brainpro_min.png">r8brain Pro 1.5 Minimum Phase(Ultra Steep)</option>
+							<option value="Reaper.png">Reaper 1</option>
+							<option value="Reaper2.png">Reaper 2 (&quot;Extreme&quot; Preset)</option>
+							<option value="Reaper2_IIR2.png">Reaper 2 (&quot;IIRx2&quot; Preset)</option>
+							<option value="Reaper255_Better.png">Reaper 2.55 (&quot;Better&quot; Preset)</option>
+							<option value="Reaper255_Best.png">Reaper 2.55 (&quot;Best&quot; Preset)</option>
+							<option value="Reaper255_Extreme.png">Reaper 2.55 (&quot;Extreme&quot; Preset)</option>
+							<option value="Reaper352.png">Reaper 3.52</option>
+							<option value="Reaper4_Extreme.png">Reaper 4 (Extreme)</option>
+							<option value="Reaper4731_Extreme.png">Reaper 4.731 (Extreme)</option>
+							<option value="Reaper5.png">Reaper 5.01 (new Extreme preset, 768 pt sinc)</option>
+							<option value="Reaper551.png">Reaper 5.51</option>
+							<option value="Reaper6_extremeHQ.png">Reaper 6 (extreme HQ)</option>
+							<option value="Reason95.png">Propellerhead Reason 9.5</option>
+							<option value="Reason83.png">Propellerhead Reason 8.3</option>
+							<option value="Reason7.png">Propellerhead Reason 7</option>
+							<option value="Reason.png">Propellerhead Reason 6.5</option>
+							<option value="Reason6.png">Propellerhead Reason 6</option>
+							<option value="Renoise35.png">Renoise 3.5</option>
+							<option value="Renoise331.png">Renoise 3.3.1</option>
+							<option value="Renoise3_Precise.png">Renoise 3 (Precise)</option>
+							<option value="Renoise3_Realtime.png">Renoise 3 (Realtime)</option>
+							<option value="Renoise280_cubic.png">Renoise 2.8.0 (cubic)</option>
+							<option value="Renoise280_sinc.png">Renoise 2.8.0 (sinc)</option>
+							<option value="AFsp.png">ResampAudio (AFsp Library) atten=180</option>
+							<option value="SADIE.png">Sadie</option>
+							<option value="Sadie6.png">Sadie 6</option>
+							<option value="MacSafari15.png">Apple Safari 15 (on Mac)</option>
+							<option value="AUConverter1014.png">Sample Manager 3.4.1  (AUConverter)</option>
+                            <option value="iZotope1014.png">Sample Manager 3.4.1 (iZotope)</option>
+                            <option value="Samplitude9.png">Samplitude 9</option>
+							<option value="Samplitude11_UH1.png">Samplitude 11 (Ultra High 1)</option>
+							<option value="Samplitude11_UH2.png">Samplitude 11 (Ultra High 2)</option>
+							<option value="SamplitudeProX3.png">Samplitude Pro X3</option>
+							<option value="SawStudio49.png">SawStudio 4.9</option>
+							<option value="SecretRabbitCode018.png">Secret Rabbit Code 0.1.8 (Best)</option>
+							<option value="SRC013_bestsinc.png">Secret Rabbit Code 0.1.3 (Best Sinc)</option>
+							<option value="SRC_BestSinc.png">Secret Rabbit Code 0.1.2 (Best Sinc)</option>
+							<option value="SRC_Lin.png">Secret Rabbit Code 0.1.2 (Linear)</option>
+							<option value="SRC_ZOH.png">Secret Rabbit Code 0.1.2 (ZOH)</option>
+							<option value="Sequoia8.png">Sequoia 8 (UH-2)</option>
+							<option value="Sequoia9.png">Sequoia 9.01 (UH-2)</option>
+							<option value="Sequoia10.png">Sequoia 10 (UH-2)</option>
+							<option value="Sequoia11_UH2.png">Sequoia 11 (UH-2)</option>
+							<option value="Sequoia12_UH2.png">Sequoia 12 (UH-2)</option>
+							<option value="Sequoia13_UH2.png">Sequoia 13 (UH-2)</option>
+							<option value="Sequoia14_UH2.png">Sequoia 14 (UH-2)</option>
+							<option value="Sequoia15_UH2.png">Sequoia 15 (UH-2)</option>
+							<option value="Sequoia16.png">Sequoia 16</option>
+							<option value="Sequoia17.png">Sequoia 17</option>
+                            <option value="SFZ.png">SFZ Free</option>
+							<option value="Signalyst291_polysinc.png">Signalyst 2.9.1 (Sinc)</option>
+							<option value="Signalyst291_polysincmp.png">Signalyst 2.9.1 (MinPhase)</option>
+							<option value="Signalyst291_polysincshort.png">Signalyst 2.9.1 (ShortPolySinc)</option>
+							<option value="Signalyst_Sinc.png">Signalyst (Sinc)</option>
+							<option value="Signalyst_SincMP.png">Signalyst (MinPhase)</option>
+							<option value="Signalyst_SincShort.png">Signalyst (ShortPolySinc)</option>
+							<option value="SimpleRC.png">Simple Rate Converter</option>
+							<option value="SIR24.png">SIR2</option>
+							<option value="Smarc03.png">Smarc 3</option>
+							<option value="Snapper.png">Audio Ease Snapper 1.0.11</option>
+                            <option value="Sonar6.png">Sonar 6</option>
+							<option value="Sonar85.png">Sonar 8.5</option>
+							<option value="SonarX3.png">Sonar X3</option>
+							<option value="Sonar2310.png">Sonar 23.10</option>
+							<option value="SonicHD_steep.png">Sonic HD (Steep)</option>
+							<option value="SonicHD_gentle.png">Sonic HD (Gentle)</option>
+							<option value="SonicHD_gentlest.png">Sonic HD (Gentlest)</option>
+							<option value="SoundBlade.png">Soundblade 1.0</option>
+							<option value="SoundEngineFree5.png">SoundEngine Free 5</option>
+							<option value="SoundForge13.png">SoundForge13</option>
+                            <option value="SoundForge12.png">SoundForge12</option>
+                            <option value="SoundForge11.png">SoundForge 11</option>
+                            <option value="SoundForge11_iZotope.png">SoundForge 11 (iZotope)</option>
+                            <option value="SoundForge8.png">SoundForge 9.0 No Anti-Aliasing</option>
+							<option value="SoundForge8_AA.png">SoundForge 9.0 Anti-Aliasing</option>
+							<option value="SoundForgePro11.png">Sound Forge Pro 1.0.23 (Mac)</option>
+							<option value="Soundhack.png">Soundhack</option>
+							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>							
+                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>							
+                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>							
+                            <option value="SoundStudio.png">SoundStudio 3.5.7</option>
+							<option value="SoundStudio464.png">Sound Studio 4.6.4</option>
+							<option value="SoX144_HQ.png">SoX 14.4 High Quality</option>
+							<option value="SoX14_HQ.png">SoX 14.4 High Quality (Aliasing Enabled)</option>
+							<option value="SoX14_VHQ_LP.png">SoX 14.4 VHQ Linear Phase</option>
+							<option value="SoX14_VHQ_IP.png">SoX 14.4 VHQ Intermediate Phase</option>
+							<option value="SoX14_VHQ_MP.png">SoX 14.4 VHQ Minimum Phase</option>
+							<option value="SparkXL.png">Spark XL 2.8.2</option>
+							<option value="SpectraLayers10.png">Spectral Layers 10</option>
+							<option value="SpectraLayers9.png">Spectral Layers 9.0.10</option>
+							<option value="SSRC.png">SSRC</option>
+							<option value="SSRC_HP.png">SSRC High Precision</option>
+							<option value="StudioOne6.png">StudioOne 6.0.1.90430</option>
+                            <option value="StudioOne461.png">StudioOne 4.6.1</option>
+							<option value="StudioOne352.png">Studio One 3.52</option>
+							<option value="PresenceXT3.png">Studio One 3 - Presence XT</option>
+							<option value="StudioOne251.png">Studio One 2.51</option>
+							<option value="StudioOne205.png">Studio One 2.05</option>
+							<option value="Switch443.png">Switch Sound File Converter Plus 4.43</option>
+							<option value="Tascam1.png">TASCAM Hi-res Editor 1.03</option>
+							<option value="Sopran_Insane.png">Tolvan Data XII Sopran (Insane)</option>
+							<option value="Sopran_Super.png">Tolvan Data XII Sopran (Super)</option>
+							<option value="Waveform11_Hybrid.png">Tracktion Waveform PRO 11.5.17 (Hybrid)</option>
+							<option value="Tracktion10.png">Tracktion Waveform 10 (free version)</option>
+							<option value="Traktor264.png">Traktor Pro 2.6.4</option>
+							<option value="Triumph3_KSRC.png">Zynaptiq Triumph 3 KSRC</option>
+							<option value="Triumph25_LP.png">Triumph 2.5.1 Goodhertz SRC (LinPhase)</option>
+							<option value="Triumph25_MP.png">Triumph 2.5.1 Goodhertz SRC (MinPhase)</option>
+							<option value="Triumph_s200.png">Triumph 2.0</option>
+							<option value="TwistedWave.png">Twisted Wave Recorder (ios)</option>
+							<option value="TwistedWave1113.png">Twisted Wave 1.11.3</option>
+							<option value="UADLuna16.png">UAD LUNA 1.6.0.3515</option>
+							<option value="Vegas17.png">Vegas 17</option>
+							<option value="Vegas90.png">Vegas 9.0</option>
+							<option value="Vegas7.png">Vegas 7.0</option>
+							<option value="WaveBurner12.png">Waveburner 1.2</option>
+							<option value="WaveBurner16.png">Waveburner 1.6</option>
+							<option value="WaveEditor.png">Wave Editor 1.4.6 (Ultra Steep LP)</option>
+							<option value="WaveEditor_SteepNA.png">Wave Editor 1.4.6 (Steep No Aliasing)</option>
+							<option value="WaveEditor_Gentle.png">Wave Editor 1.4.6 (Gentle)</option>
+							<option value="Wavelab5_internal.png">Wavelab 5 Internal</option>
+							<option value="Wavelab5_Rsmp192.png">Wavelab 5 Resampler 192</option>
+							<option value="Wavelab6_internal.png">Wavelab 6 Internal</option>
+							<option value="Wavelab6_Crystal.png">Wavelab 6 Crystal Resampler</option>
+							<option value="WaveLab851_CrystalUltra.png">Wavelab 8.5 Crystal Resampler</option>
+							<option value="WaveLab95.png">WaveLab 9.5.10 Build 17</option>
+							<option value="WavelabPro10.png">Wavelab Pro 10 (Best)</option>
+							<option value="WavelabPro12.png">Wavelab Pro 12 (Best)</option>
+							<option value="WavelabPro12_Standard.png">Wavelab Pro 12 (Standard)</option>
+							<option value="WavelabE11.png">Wavelab Elements 11</option>
+                            <option value="WavePad.png">NHC WavePad</option>
+							<option value="WavePurity761.png">WavePurity Professional 7.61</option>
+							<option value="WaveShop.png">WaveShop 1.0</option>
+							<option value="WaveStudio7.png">Creative WaveStudio 7</option>
+							<option value="Wavosaur.png">Wavosaur 1.0.1.0</option>
+							<option value="Wavosaur103_lin.png">Wavosaur 1.0.3.0 Linear</option>
+							<option value="Wavosaur103_bl.png">Wavosaur 1.0.3.0 Band Limited</option>
+							<option value="Saracon.png">Weiss Saracon 1.6</option>
+							<option value="SFC2.png">Weiss SFC2</option>
+                            <option value="Windows10.png">Windows 10 DS resampler</option>                            
+							<option value="XiphSpeex12_q10.png">Xiph.org Speex 1.2rc1 (Quality 10)</option>
+							<option value="XiSRC.png">XiSRC 1.0.4</option>
+							<option value="XLD.png">XLD 10.4</option>
+							<option value="XRECODE3_swr.png">XRECODE 3 [64-bit] 1.77 SWR</option>
+							<option value="XRECODE3_sox.png">XRECODE 3 [64-bit] 1.77 SOX</option>
+							<option value="Libzita.png">Zita Resampler</option>
+							<option value="ZSystems.png">ZSystems z-3src</option>
+						</select>					
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><br>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 70px;"><label>Test Result</label>
+					</td>
+					<td>
+						<select name="tMode" onChange="Top_MC()">
+							<option value="images/Sweep/">Sweep</option>
+							<option value="images/Tone/">1kHz Tone (-0.1dbfs &amp; -60dbfs)</option>
+							<option value="images/Passband/">Passband</option>
+							<option value="images/Transition/">Transition</option>
+							<option value="images/Phase/">Phase</option>
+							<option value="images/Impulse/">Impulse</option>
+						</select>	&nbsp;	
+						<input type="button" onclick="but_TopPrev()" value="<" >&nbsp;						
+						<input type="button" onclick="but_TopNext()" value=">" >
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;	
+					</td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="botctl">
+		<form name="subPane2">
+			<table style="padding: 0px; border-spacing:0px; border:none; ">
+				<tr>
+					<td><label>Converter</label>
+					</td>
+					<td>
+						<select name="bPack" id="bPack" onChange="bPack_C()">
+							<option value="Live10.png">Ableton Live 10.1</option>
+							<option value="Live973.png">Ableton Live 9.73</option>
+							<option value="Live911.png">Ableton Live 9.11</option>
+							<option value="Live903_HiQ.png">Ableton Live 9.03</option>
+							<option value="Live82.png">Ableton Live 8.2</option>
+							<option value="Ableton7_HQ.png">Ableton Live 7, 8 High Quality</option>
+							<option value="Ableton.png">Ableton Live 7</option>
+							<option value="Acoustica74.png">Acon Digital Acoustica 7.4</option>
+                            <option value="Acoustica73.png">Acon Digital Acoustica 7.3</option>
+							<option value="Acoustica7051.png">Acon Digital Acoustica 7.0.51</option>
+							<option value="Acoustica7.png">Acon Digital Acoustica 7</option>
+							<option value="Audition14.png">Adobe Audition 14</option>
+							<option value="Audition2019.png">Adobe Audition 2019</option>
+							<option value="Audition2018_filter.png">Adobe Audition CC 2018 (filter)</option>
+                            <option value="Audition2018_nofilter.png">Adobe Audition CC 2018 (no filter)</option>
+                            <option value="Audition10.png">Adobe Audition 10</option>
+							<option value="Audition55.png">Adobe Audition 5.5 And CS6</option>
+							<option value="Audition3_NPF.png">Adobe Audition 3 No Pre/Post Filter</option>
+							<option value="Audition3_PF.png">Adobe Audition 3 Pre/Post Filter</option>
+							<option value="Audition15_NPF.png">Adobe Audition 2 No Pre/Post Filter</option>
+							<option value="Audition15_PF.png">Adobe Audition 2 Pre/Post Filter</option>
+							<option value="AdobeMC.png">Adobe CS6 Media Encoder</option>
+							<option selected value="Afconvert_norm.png">Afconvert (Normal)</option>
+							<option value="Afconvert_bats.png">Afconvert (Bats)</option>
+							<option value="AIMP36_Q5.png">AIMP 3.60.1465 (Quality 5)</option>
+							<option value="Amadeus242.png">Amadeus Pro 2.4.2</option>
+							<option value="Amadeus.png">Amadeus Pro 2.1.3</option>
+							<option value="Ardour5.png">Ardour 5</option>
+							<option value="Anytime11.png">Anytime 1.1</option>
+							<option value="Anytime.png">Anytime 1.0</option>
+							<option value="Tiger.png">Apple CoreAudio (Tiger)</option>
+							<option value="Leopard.png">Apple CoreAudio (Leopard)</option>
+							<option value="Ardour35.png">Ardour 3.5.403</option>
+							<option value="Audacity3.png">Audacity 3 (Best Quality)</option>
+							<option value="Audacity242.png">Audacity 2.4.2 (Best Quality)</option>
+							<option value="Audacity203.png">Audacity 2.0.3 (Best Quality)</option>
+							<option value="Audacity200_HQ.png">Audacity 2.0 (High Quality)</option>
+							<option value="Audacity139_Best.png">Audacity 1.39 (Best)</option>
+							<option value="Audacity139_Medium.png">Audacity 1.39 (Medium)</option>
+							<option value="AudioMastering.png">Audio Mastering (ios)</option>
+							<option value="Audiomove.png">Audiomove 1.2 (Best)</option>
+							<option value="ART_Preset2.png">Audio Resampling Tool (ART) 0.1 (preset 2)</option>
+                            <option value="ART_preset3.png">Audio Resampling Tool (ART) 0.1 (preset 3)</option>
+                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>    
+                            <option value="AuIConvert.png">AuI Converter 48x44 Pro &amp; Free v.1.5</option>
+                            <option value="Aui121.png">AuI Converter 48x44 Free v.1.2.1.0</option>
+                            <option value="AWaveStudio103.png">Awave Studio 10.3</option>
+							<option value="Barbabatch.png">Barbabatch</option>
+							<option value="PeakPro603.png">Bias Peak Pro 6.03</option>
+							<option value="PeakPro52.png">Bias Peak Pro 5.2</option>
+							<option value="Bitwig24.png">Bitwig 2.4.3</option>
+							<option value="Bitwig214.png">Bitwig 2.1.4</option>
+							<option value="Bitwig13.png">Bitwig 1.3.15</option>
+							<option value="Brick10.png">Brick 1.0</option>
+							<option value="CamillaDSP_c089.png">Camilla DSP</option>
+							<option value="MacChrome125.png">Google Chrome 125 (on Mac)</option>
+							<option value="Cubase14.png">Cubase14</option>
+							<option value="Cubase10b.png">Cubase 10</option>
+							<option value="Cubase95.png">Cubase 9.5</option>
+							<option value="Cubase4.png">Cubase 4, 5, 6, 7, 8 and 9</option>
+							<option value="dBPowerAmp17.png">dBPowerAmp 17 Beta</option>
+							<option value="dBPowerAmp.png">dBpoweramp Music Converter 15.1</option>
+							<option value="DCF8.png">Diamond Cut Forensics 8 Audio Laboratory</option>
+							<option value="DP11.png">Digital Performer 11</option>
+							<option value="DP9.png">Digital Performer 8 &amp; 9</option>
+							<option value="DP7.png">Digital Performer 7</option>
+							<option value="DP6.png">Digital Performer 6</option>
+							<option value="DigitalPerformer51.png">Digital Performer 5.1</option>
+							<option value="DspQuattro.png">DSP-Quattro 4.2.2</option>
+							<option value="DspQuattro.png">DSP-Quattro 3.5.1</option>
+							<option value="DspQuattro.png">DSP-Quattro 2.5.1 (Excellent)</option>
+							<option value="EAC3TO.png">eac3to (SSRC)</option>
+							<option value="EZCD91.png">EZ CD Audio Converter 9.1</option>
+							<option value="EZCD83_steep.png">EZ CD Audio Converter 8.3 Steep</option>
+							<option value="EZCD83_steepaliasing.png">EZ CD Audio Converter 8.3 Steep Aliasing</option>
+							<option value="EZCD83_default.png">EZ CD Audio Converter 8.3 Default</option>
+							<option value="EZCD83_defaultaliasing.png">EZ CD Audio Converter 8.3 Default Aliasing</option>
+							<option value="EZCD8_Opus5.png">EZ CD Audio Converter 8.0.6 Opus/Speex - Quality 5</option>
+							<option value="EZCD_Opus10.png">EZ CD Audio Converter 8.0.6 Opus/Speex - Quality 10</option>
+							<option value="EZCD8_SoxHigh.png">EZ CD Audio Converter 8.0.6 SoX - High Quality</option>
+							<option value="EZCD8_SoxVeryHigh.png">EZ CD Audio Converter 8.0.6 SoX - Very High Quality</option>
+							<option value="Poikosoft221.png">EZ CD Audio Converter 2.2.1</option>
+							<option value="Ferocious_std.png">Ferocious ReSampler - Standard</option>
+                            <option value="Ferocious_min.png">Ferocious ReSampler - Minimum Phase</option>
+                            <option value="Ferocious_steep.png">Ferocious ReSampler - Steep</option>
+                            <option value="FFMPEG_SoXrMaxPrecision.png">ffmpeg 7.1 (soxr)</option>
+                            <option value="FFMPEG_SoXrMaxPrecisionCheby.png">ffmpeg 7.1 (soxr Cheby)</option>
+							<option value="FFMPEG_SWR.png">ffmpeg 7.1 (swr)</option>
+							<option value="FFMPEG422_soxr.png">ffmpeg 4.2.2 (soxr)</option>
+							<option value="FFMPEG422_swr.png">ffmpeg 4.2.2 (swr)</option>
+							<option value="FFMPEG34_swr.png">ffmpeg 3.4.2 (swr)</option>
+                            <option value="ffmpeg111_soxr.png">ffmpeg 1.1.1 (soxr)</option>
+                            <option value="ffmpeg111_swr.png">ffmpeg 1.1.1 (swr)</option>
+                            <option value="ffmpeg.png">ffmpeg 0.10.4</option>
+                            <option value="FinalCD017_Goldilocks.png">FinalCD 0.17 (&quot;Goldilocks&quot; Medium Filter)</option>
+                            <option value="FinalCD016_Gentle.png">FinalCD 0.12 -&gt; 0.16 (Gentle)</option>
+                            <option value="FinalCD012.png">FinalCD 0.12 -&gt; 0.16 (Sharp)</option>
+                            <option value="MacFirefox126.png">Mozilla Firefox 126 (on Mac)</option>
+							<option value="Fission2.png">Fission 2.4.1</option>
+							<option value="Edison.png">FL Studio 7 (and Edison)</option>
+							<option value="FLStudio8.png">FL Studio 8 (and Edison)</option>
+							<option value="EdisonFL10.png">FL Studio 10 (and Edison)</option>
+							<option value="FLStudio10_Herm6.png">FL Studio 10 (6 Point Hermite)</option>
+							<option value="FLStudio10_Sinc512.png">FL Studio 10 (512 Point Sinc)</option>
+							<option value="FLStudio11_Sinc512.png">FL Studio 11 (512 point sync)</option>
+							<option value="FLStudio12_Sinc512.png">FL Studio 12 (512 point sync)</option>
+							<option value="EdisonFL20.png">FL Studio 20.1.2.877</option>
+							<option value="Foobar2000RetroArch_Highest.png">foobar2000 RetroArch (Highest)</option>
+							<option value="Foobar2000RetroArch_Normal.png">foobar2000 RetroArch (Normal)</option>
+							<option value="Foobar2000.png">fooBar2000</option>
+							<option value="FooDsp_SSRCXultra.png">FooDsp SSRCX Ultra</option>
+							<option value="FooDsp_SSRCXhigh.png">FooDsp SSRCX High</option>
+							<option value="FooDsp_SSRCXdefault.png">FooDsp SSRCX Default</option>
+							<option value="FooDsp_SSRC198.png">FooDsp SSRC 198</option>
+							<option value="FooDsp_SSRC120.png">FooDsp SSRC 120</option>
+							<option value="FooDsp_SoX198.png">FooDsp SOX 198</option>
+							<option value="FooDsp_SoX120.png">FooDsp SOX 120</option>
+							<option value="FooDsp_PPHSUltra.png">FooDsp PPHS Ultra</option>
+							<option value="FooDsp_PPHS.png">FooDsp PPHS</option>
+							<option value="FooDsp_MS_Sinc.png">FooDsp Multiresampler Sinc</option>
+							<option value="FooDsp_MS_Blep.png">FooDsp Multiresampler Blep</option>
+							<option value="FooDsp_MS_Blam.png">FooDsp Multiresampler Blam</option>
+							<option value="FooDsp_MediumSinc.png">FooDsp Medium Sinc</option>
+							<option value="FooDsp_FastestSinc.png">FooDsp Fastest Sinc</option>
+							<option value="FooDsp_BestSinc.png">FooDsp Best Sinc</option>
+							<option value="FooDspdBPowerAmp.png">FooDsp dBPowerAmp mode</option>
+							<option value="FooDsp083.png">foo_dsp_resampler</option>
+							<option value="Frankl.png">Frankl resample_soxr (phase=45 v0.8)</option>
+							<option value="FScape_FIR.png">FScape 0.66</option>
+							<option value="FScape_FIRint.png">FScape 0.66 (int)</option>
+							<option value="GoldWave67.png">Gold Wave 6.7</option>
+                            <option value="GoldWave558.png">Gold Wave 5.58</option>
+							<option value="GoldWave.png">Gold Wave 5.18</option>
+							<option value="GoodHertz_LP.png">Goodhertz SRC (Linear Phase)</option>
+							<option value="GoodHertz_MP.png">Goodhertz SRC (Minimum Phase)</option>
+							<option value="Hawksford2.png">Hawksford Spectral Domain</option>
+							<option value="Hofa16.png">Hofa CD Burn &amp; DDP 1.6.10</option>
+							<option value="Hofa20.png">Hofa CD Burn &amp; DDP 2.0.4</option>
+							<option value="SuperVP.png">IRCAM  SuperVP (Default)</option>
+							<option value="SuperVP_ResS160.png">IRCAM  SuperVP (160dB SNR)</option>
+							<option value="iZotope_USNA.png">iZotope 64 bit SRC Steep, No Alias</option>
+							<option value="iZotope_IP.png">iZotope 64 bit SRC Intermed. Phase</option>
+							<option value="RX81_Default.png">iZotope RX 8.1 (Default)</option>
+							<option value="RX81_InterPhase.png">iZotope RX 8.1 (Intermediate phase)</option>
+							<option value="RX7_SteepMP.png">iZotope RX 7 (MP, steepness = 2000, cutoff = 0.99)</option>
+							<option value="RX6.png">iZotope RX 6</option>
+							<option value="RX_1300.png">iZotope RX Adv 2 (High Steepness)</option>
+							<option value="RX_ip.png">iZotope RX Adv 2 (Intermediate Phase)</option>
+							<option value="JRiver18.png">JRiver 18</option>
+							<option value="JUCE153.png">JUCE 2.0.13 (C++ Library)</option>
+							<option value="KFR3.png">KFR 3.0.2 (high quality preset)</option>
+							<option value="Audiogate4.png">Korg Audiogate 4</option>
+							<option value="Korg.png">Korg AudioGate</option>
+							<option value="LakePeople.png">Lake People DAT RS 05</option>
+							<option value="libfsrc.png">libfsrc (alpha)</option>
+							<option value="LMMS121_SincBest1x.png">LMMS 1.2.1 (SincBest1x)</option>
+							<option value="LMMS121_SincBest8x.png">LMMS 1.2.1 (SincBest8x)</option>
+							<option value="Logic.png">Logic 7.2.3</option>
+							<option value="Logic8Leopard.png">Logic 8 (Leopard)</option>
+							<option value="Logic8Tiger.png">Logic 8 (Tiger)</option>
+							<option value="Logic902.png">Logic 9 And 9.17 (Leopard, Snow Leopard)</option>
+							<option value="LogicX.png">Logic 10.1.4</option>
+							<option value="LogicXMavericks.png">Logic X OSX Mavericks</option>
+							<option value="LogicProIPad.png">Logic Pro for IPad</option>
+                            <option value="LogicPro116.png">Logic Pro 10.6.2</option>
+							<option value="Logic103.png">Logic Pro X 10.3.2</option>
+							<option value="Lurssen.png">Lurssen Mastering Console (24bit)</option>
+							<option value="MainConceptTCS53.png">MainConcept TotalCode Studio 5.3.0</option>
+                            <option value="Matlab.png">Matlab R2014a (resample function)</option>
+							<option value="Matlab_SRC.png">MATLAB - dsp.SampleRateConverter</option>
+							<option value="Matlab_FIRRC.png">MATLAB - dsp.FIRRateConverter</option>
+							<option value="AMR.png">Merging AMR</option>
+							<option value="AWE.png">Minnetonka AWE</option>
+							<option value="Mixbus.png">Harrison Mixbus 2.1</option>
+							<option value="Mixpad.png">NHC MixPad</option>
+							<option value="MytekStereo192_ANSC.png">Mytek Stereo 192SRC (Async)</option>
+							<option value="MytekStereo192_SNC.png">Mytek Stereo 192SRC (Sync)</option>
+							<option value="Myriad44.png">Myriad 4.4.1</option>
+							<option value="Myriad46_Apple.png">Myriad 4.6.0 (Apple)</option>
+							<option value="Myriad46_Zynaptic.png">Myriad 4.6.0 (Zynaptic)</option>
+							<option value="Kontakt5.png">Native Instruments Kontakt 5.7.1 R35</option>
+							<option value="NeroWaveEditor12_Accurate.png">Nero Wave Editor 12.0.4 (Accurate)</option>
+							<option value="NeroWaveEditor12_Average.png">Nero Wave Editor 12.0.4 (Average)</option>
+							<option value="NeroWaveEditor12_Fast.png">Nero Wave Editor 12.0.4 (Fast)</option>
+							<option value="Nero10_Accurate.png">Nero Wave Editor 10 (Accurate)</option>
+							<option value="Nero10_SaveAs.png">Nero Wave Editor 10 (Save As)</option>
+							<option value="Nuendo13.png">Nuendo 13</option>
+							<option value="Nuendo12.png">Nuendo 12</option>
+							<option value="Nuendo11.png">Nuendo 11</option>
+							<option value="Nuendo5.png">Nuendo 3.0, 4.0 and 5.0</option>
+							<option value="Nykiel14.png">Nykiel iSRC 1.4</option>
+							<option value="Ocenaudio.png">Ocenaudio</option>
+							<option value="OpenMPT_Blackman.png">OpenMPT (Blackman)</option>
+							<option value="OpenMPT_Kaiser.png">OpenMPT (Kaiser)</option>
+							<option value="OpenMPT_Polyphase.png">OpenMPT (Polyphase)</option>
+							<option value="Pipewire_Q4.png">Pipewire 0.3.47 (Quality 4)</option>
+							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>	
+							<option value="Pipewire_Q1.png">Pipewire (Quality 1)</option>
+							<option value="Pipewire_4.png">Pipewire (Quality 4)</option>
+                            <option value="Pipewire_10.png">Pipewire (Quality 10)</option>
+                            <option value="Pipewire_Q14.png">Pipewire Quality 14)</option>
+							<option value="PresonusABC.png">PreSonus Audio Batch Converter (6.0.1.90430)</option>
+                            <option value="ProAudioConverter.png">Pro Audio Converter from Mark V Apps</option>
+							<option value="ProTools2021.png">ProTools 2021</option>
+							<option value="ProTools2019_bounce.png">ProTools 2019 (bounce)</option>
+                            <option value="ProTools2019_import.png">ProTools 2019 (import)</option>
+                            <option value="ProTools2018.png">Pro Tools 2018</option>
+							<option value="ProToolsHD10.png">Pro Tools HD 10.3.5</option>
+							<option value="ProToolsHD72.png">Pro Tools HD 7.2</option>
+							<option value="ProToolsHD72.png">Pro Tools LE 8.0.3</option>
+							<option value="PureMusic.png">Pure Music 2.0.1</option>
+							<option value="Pyramix.png">Pyramix 6.2.3 (Offline and Realtime)</option>
+							<option value="Pyramix7_AP.png">Pyramix 7 (Apodizing Filter)</option>
+							<option value="Pyramix818_Lin.png">Pyramix 8.1.8 (Linear Phase)</option>
+							<option value="Pyramix818_Min.png">Pyramix 8.1.8 (Minimum Phase)</option>
+							<option value="Pyramix818_AP.png">Pyramix 8.1.8 (Apodizing Filter)</option>
+							<option value="Pyramix10.png">Pyramix 10</option>
+							<option value="QuickTimePro766.png">QuickTime Pro 7.6.6</option>
+							<option value="r8brainPro_PreciseLinPhase.png">r8brain Pro 2.12 (PreciseLP)</option>
+							<option value="r8brainPro_PreciseMinPhase.png">r8brain Pro 2.12 (PreciseMP)</option>
+                            <option value="r8brainPro29_FastLP.png">r8brain Pro 2.9 (FastLP)</option>
+                            <option value="r8brainPro29_PrecideLP.png">r8brain Pro 2.9 (PreciseLP)</option>
+                            <option value="r8brainPro29_PreciseMP.png">r8brain Pro 2.9 (PreciseMP)</option>
+                            <option value="r8brain2.png">r8brain Free 2.0</option>
+							<option value="R8brainFree19.png">r8brain Free 1.9</option>
+							<option value="r8brainProNS_lin.png">r8brain Pro 1.5 Linear Phase</option>
+							<option value="r8brainProNS_min.png">r8brain Pro 1.5 Minimum Phase</option>
+							<option value="r8brainpro_lin.png">r8brain Pro 1.5 Linear Phase (Ultra Steep)</option>
+							<option value="r8brainpro_min.png">r8brain Pro 1.5 Minimum Phase(Ultra Steep)</option>
+							<option value="Reaper.png">Reaper 1</option>
+							<option value="Reaper2.png">Reaper 2 (&quot;Extreme&quot; Preset)</option>
+							<option value="Reaper2_IIR2.png">Reaper 2 (&quot;IIRx2&quot; Preset)</option>
+							<option value="Reaper255_Better.png">Reaper 2.55 (&quot;Better&quot; Preset)</option>
+							<option value="Reaper255_Best.png">Reaper 2.55 (&quot;Best&quot; Preset)</option>
+							<option value="Reaper255_Extreme.png">Reaper 2.55 (&quot;Extreme&quot; Preset)</option>
+							<option value="Reaper352.png">Reaper 3.52</option>
+							<option value="Reaper4_Extreme.png">Reaper 4 (Extreme)</option>
+							<option value="Reaper4731_Extreme.png">Reaper 4.731 (Extreme)</option>
+							<option value="Reaper5.png">Reaper 5.01 (new Extreme preset, 768 pt sinc)</option>
+							<option value="Reaper551.png">Reaper 5.51</option>
+							<option value="Reaper6_extremeHQ.png">Reaper 6 (extreme HQ)</option>
+							<option value="Reason95.png">Propellerhead Reason 9.5</option>
+							<option value="Reason83.png">Propellerhead Reason 8.3</option>
+							<option value="Reason7.png">Propellerhead Reason 7</option>
+							<option value="Reason.png">Propellerhead Reason 6.5</option>
+							<option value="Reason6.png">Propellerhead Reason 6</option>
+							<option value="Renoise35.png">Renoise 3.5</option>
+							<option value="Renoise331.png">Renoise 3.3.1</option>
+							<option value="Renoise3_Precise.png">Renoise 3 (Precise)</option>
+							<option value="Renoise3_Realtime.png">Renoise 3 (Realtime)</option>
+							<option value="Renoise280_cubic.png">Renoise 2.8.0 (cubic)</option>
+							<option value="Renoise280_sinc.png">Renoise 2.8.0 (sinc)</option>
+							<option value="AFsp.png">ResampAudio (AFsp Library) atten=180</option>
+							<option value="SADIE.png">Sadie</option>
+							<option value="Sadie6.png">Sadie 6</option>
+							<option value="MacSafari15.png">Apple Safari 15 (on Mac)</option>
+							<option value="AUConverter1014.png">Sample Manager 3.4.1  (AUConverter)</option>
+                            <option value="iZotope1014.png">Sample Manager 3.4.1 (iZotope)</option>
+                            <option value="Samplitude9.png">Samplitude 9</option>
+							<option value="Samplitude11_UH1.png">Samplitude 11 (Ultra High 1)</option>
+							<option value="Samplitude11_UH2.png">Samplitude 11 (Ultra High 2)</option>
+							<option value="SamplitudeProX3.png">Samplitude Pro X3</option>
+							<option value="SawStudio49.png">SawStudio 4.9</option>
+							<option value="SecretRabbitCode018.png">Secret Rabbit Code 0.1.8 (Best)</option>
+							<option value="SRC013_bestsinc.png">Secret Rabbit Code 0.1.3 (Best Sinc)</option>
+							<option value="SRC_BestSinc.png">Secret Rabbit Code 0.1.2 (Best Sinc)</option>
+							<option value="SRC_Lin.png">Secret Rabbit Code 0.1.2 (Linear)</option>
+							<option value="SRC_ZOH.png">Secret Rabbit Code 0.1.2 (ZOH)</option>
+							<option value="Sequoia8.png">Sequoia 8 (UH-2)</option>
+							<option value="Sequoia9.png">Sequoia 9.01 (UH-2)</option>
+							<option value="Sequoia10.png">Sequoia 10 (UH-2)</option>
+							<option value="Sequoia11_UH2.png">Sequoia 11 (UH-2)</option>
+							<option value="Sequoia12_UH2.png">Sequoia 12 (UH-2)</option>
+							<option value="Sequoia13_UH2.png">Sequoia 13 (UH-2)</option>
+							<option value="Sequoia14_UH2.png">Sequoia 14 (UH-2)</option>
+							<option value="Sequoia15_UH2.png">Sequoia 15 (UH-2)</option>
+							<option value="Sequoia16.png">Sequoia 16</option>
+							<option value="Sequoia17.png">Sequoia 17</option>
+                            <option value="SFZ.png">SFZ Free</option>
+							<option value="Signalyst291_polysinc.png">Signalyst 2.9.1 (Sinc)</option>
+							<option value="Signalyst291_polysincmp.png">Signalyst 2.9.1 (MinPhase)</option>
+							<option value="Signalyst291_polysincshort.png">Signalyst 2.9.1 (ShortPolySinc)</option>
+							<option value="Signalyst_Sinc.png">Signalyst (Sinc)</option>
+							<option value="Signalyst_SincMP.png">Signalyst (MinPhase)</option>
+							<option value="Signalyst_SincShort.png">Signalyst (ShortPolySinc)</option>
+							<option value="SimpleRC.png">Simple Rate Converter</option>
+							<option value="SIR24.png">SIR2</option>
+							<option value="Smarc03.png">Smarc 3</option>
+							<option value="Snapper.png">Audio Ease Snapper 1.0.11</option>
+                            <option value="Sonar6.png">Sonar 6</option>
+							<option value="Sonar85.png">Sonar 8.5</option>
+							<option value="SonarX3.png">Sonar X3</option>
+							<option value="Sonar2310.png">Sonar 23.10</option>
+							<option value="SonicHD_steep.png">Sonic HD (Steep)</option>
+							<option value="SonicHD_gentle.png">Sonic HD (Gentle)</option>
+							<option value="SonicHD_gentlest.png">Sonic HD (Gentlest)</option>
+							<option value="SoundBlade.png">Soundblade 1.0</option>
+							<option value="SoundEngineFree5.png">SoundEngine Free 5</option>
+							<option value="SoundForge13.png">SoundForge13</option>
+                            <option value="SoundForge12.png">SoundForge12</option>
+                            <option value="SoundForge11.png">SoundForge 11</option>
+                            <option value="SoundForge11_iZotope.png">SoundForge 11 (iZotope)</option>
+                            <option value="SoundForge8.png">SoundForge 9.0 No Anti-Aliasing</option>
+							<option value="SoundForge8_AA.png">SoundForge 9.0 Anti-Aliasing</option>
+							<option value="SoundForgePro11.png">Sound Forge Pro 1.0.23 (Mac)</option>
+							<option value="Soundhack.png">Soundhack</option>
+							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>							
+                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>							
+                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>							
+                            <option value="SoundStudio.png">SoundStudio 3.5.7</option>
+							<option value="SoundStudio464.png">Sound Studio 4.6.4</option>
+							<option value="SoX144_HQ.png">SoX 14.4 High Quality</option>
+							<option value="SoX14_HQ.png">SoX 14.4 High Quality (Aliasing Enabled)</option>
+							<option value="SoX14_VHQ_LP.png">SoX 14.4 VHQ Linear Phase</option>
+							<option value="SoX14_VHQ_IP.png">SoX 14.4 VHQ Intermediate Phase</option>
+							<option value="SoX14_VHQ_MP.png">SoX 14.4 VHQ Minimum Phase</option>
+							<option value="SparkXL.png">Spark XL 2.8.2</option>
+							<option value="SpectraLayers10.png">Spectral Layers 10</option>
+							<option value="SpectraLayers9.png">Spectral Layers 9.0.10</option>
+							<option value="SSRC.png">SSRC</option>
+							<option value="SSRC_HP.png">SSRC High Precision</option>
+							<option value="StudioOne6.png">StudioOne 6.0.1.90430</option>
+                            <option value="StudioOne461.png">StudioOne 4.6.1</option>
+							<option value="StudioOne352.png">Studio One 3.52</option>
+							<option value="PresenceXT3.png">Studio One 3 - Presence XT</option>
+							<option value="StudioOne251.png">Studio One 2.51</option>
+							<option value="StudioOne205.png">Studio One 2.05</option>
+							<option value="Switch443.png">Switch Sound File Converter Plus 4.43</option>
+							<option value="Tascam1.png">TASCAM Hi-res Editor 1.03</option>
+							<option value="Sopran_Insane.png">Tolvan Data XII Sopran (Insane)</option>
+							<option value="Sopran_Super.png">Tolvan Data XII Sopran (Super)</option>
+							<option value="Waveform11_Hybrid.png">Tracktion Waveform PRO 11.5.17 (Hybrid)</option>
+							<option value="Tracktion10.png">Tracktion Waveform 10 (free version)</option>
+							<option value="Traktor264.png">Traktor Pro 2.6.4</option>
+							<option value="Triumph3_KSRC.png">Zynaptiq Triumph 3 KSRC</option>
+							<option value="Triumph25_LP.png">Triumph 2.5.1 Goodhertz SRC (LinPhase)</option>
+							<option value="Triumph25_MP.png">Triumph 2.5.1 Goodhertz SRC (MinPhase)</option>
+							<option value="Triumph_s200.png">Triumph 2.0</option>
+							<option value="TwistedWave.png">Twisted Wave Recorder (ios)</option>
+							<option value="TwistedWave1113.png">Twisted Wave 1.11.3</option>
+							<option value="UADLuna16.png">UAD LUNA 1.6.0.3515</option>
+							<option value="Vegas17.png">Vegas 17</option>
+							<option value="Vegas90.png">Vegas 9.0</option>
+							<option value="Vegas7.png">Vegas 7.0</option>
+							<option value="WaveBurner12.png">Waveburner 1.2</option>
+							<option value="WaveBurner16.png">Waveburner 1.6</option>
+							<option value="WaveEditor.png">Wave Editor 1.4.6 (Ultra Steep LP)</option>
+							<option value="WaveEditor_SteepNA.png">Wave Editor 1.4.6 (Steep No Aliasing)</option>
+							<option value="WaveEditor_Gentle.png">Wave Editor 1.4.6 (Gentle)</option>
+							<option value="Wavelab5_internal.png">Wavelab 5 Internal</option>
+							<option value="Wavelab5_Rsmp192.png">Wavelab 5 Resampler 192</option>
+							<option value="Wavelab6_internal.png">Wavelab 6 Internal</option>
+							<option value="Wavelab6_Crystal.png">Wavelab 6 Crystal Resampler</option>
+							<option value="WaveLab851_CrystalUltra.png">Wavelab 8.5 Crystal Resampler</option>
+							<option value="WaveLab95.png">WaveLab 9.5.10 Build 17</option>
+							<option value="WavelabPro10.png">Wavelab Pro 10 (Best)</option>
+							<option value="WavelabPro12.png">Wavelab Pro 12 (Best)</option>
+							<option value="WavelabPro12_Standard.png">Wavelab Pro 12 (Standard)</option>
+							<option value="WavelabE11.png">Wavelab Elements 11</option>
+                            <option value="WavePad.png">NHC WavePad</option>
+							<option value="WavePurity761.png">WavePurity Professional 7.61</option>
+							<option value="WaveShop.png">WaveShop 1.0</option>
+							<option value="WaveStudio7.png">Creative WaveStudio 7</option>
+							<option value="Wavosaur.png">Wavosaur 1.0.1.0</option>
+							<option value="Wavosaur103_lin.png">Wavosaur 1.0.3.0 Linear</option>
+							<option value="Wavosaur103_bl.png">Wavosaur 1.0.3.0 Band Limited</option>
+							<option value="Saracon.png">Weiss Saracon 1.6</option>
+							<option value="SFC2.png">Weiss SFC2</option>
+                            <option value="Windows10.png">Windows 10 DS resampler</option>                            
+							<option value="XiphSpeex12_q10.png">Xiph.org Speex 1.2rc1 (Quality 10)</option>
+							<option value="XiSRC.png">XiSRC 1.0.4</option>
+							<option value="XLD.png">XLD 10.4</option>
+							<option value="XRECODE3_swr.png">XRECODE 3 [64-bit] 1.77 SWR</option>
+							<option value="XRECODE3_sox.png">XRECODE 3 [64-bit] 1.77 SOX</option>
+							<option value="Libzita.png">Zita Resampler</option>
+							<option value="ZSystems.png">ZSystems z-3src</option>
+						</select>						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><br>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 70px;"><label>Test Result</label>
+					</td>
+					<td>
+						<select name="bMode" onChange="Bot_MC()">
+							<option value="images/Sweep/">Sweep</option>
+							<option value="images/Tone/">1kHz Tone (-0.1dbfs &amp; -60dbfs)</option>
+							<option value="images/Passband/">Passband</option>
+							<option value="images/Transition/">Transition</option>
+							<option value="images/Phase/">Phase</option>
+							<option value="images/Impulse/">Impulse</option>
+						</select>	&nbsp;	
+						<input type="button" onclick="but_BotPrev()" value="<" >&nbsp;						
+						<input type="button" onclick="but_BotNext()" value=">" >
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+                        &nbsp;&nbsp;&nbsp; Match Converter with Top <input type="checkbox" onclick="matchTopPack_Ch()" name="matchTop_pack" id="matchTop_pack">
+                        &nbsp; Match Test Result with Top <input type="checkbox" onclick="matchTop_Ch()" name="matchTop_dm" id="matchTop_dm" checked>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;	
+					</td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="graph1"><img id="topImage" src="images/Sweep/Live10.png" width="512" height="326" alt="Top Image">
+	</div>
+	<div id="graph2"><img id="bottomImage" src="images/Sweep/Acoustica73.png" width="512" height="326" alt="Bottom Image">
+	</div>
+	<div id="magChart"><img id="chart1" src="images/MagsChart.png" width="41" height="306" alt="Colour Legend">
+	</div>
+	<div id="buttons">
+        <a href="faq.html" onclick="window.open('faq.html', 'help','location=0,status=0,scrollbars=1,width=800,height=600');return false;">&nbsp;FAQ&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="help.html" onclick="window.open('help.html', 'help','location=0,status=0,scrollbars=1,width=800,height=600');return false;">&nbsp;INFO&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="crdt.html" onclick="window.open('crdt.html', 'Credits','location=0,status=0,scrollbars=1,width=415,height=500');return false;">&nbsp;CREDITS&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a onclick="copyIt()" title="Copies a link (to the current view) to your clipboard." style="cursor: pointer;">&nbsp;SHARE&nbsp;</a>
+    </div>
+	    <div id="Updated">Last Updated: 16 February 2025</div>
+    <div style="position: absolute; top: 210px; left: 62px; z-index: 0;"><img src="images/Social.jpg" style="border: none; display: block !important;" usemap="#SMap" alt = "Social Links" ></div> 
+<map name="SMap">
+	<area shape="rect" coords="0,0,33,33" href="soc.php?w=f" target="_blank" alt="Visit Us on Facebook" >
+    <area shape="rect" coords="34,0,66,33" href="soc.php?w=l" target="_blank" alt="Visit Us on LinkedIn" >
+    <area shape="rect" coords="67,0,99,33" href="srcrss.xml" target="_blank" alt="RSS" >
+</map>
+<map name="menuMap">
+    <area shape="rect" coords="0,0,76,34" href="http://www.infinitewave.ca/index.php" alt="Home" >
+    <area shape="rect" coords="77,0,161,34" href="http://www.infinitewave.ca/facility.php" alt="Facility" >
+    <area shape="rect" coords="162,0,263,34" href="http://www.infinitewave.ca/resources.php" alt="Resources" >
+    <area shape="rect" coords="264,0,350,34" href="http://www.infinitewave.ca/contact.php" alt="Contact" >
+</map>
+		
+</body>
+</html>
+

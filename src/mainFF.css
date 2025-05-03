@@ -1,0 +1,112 @@
+/* CSS Document */
+
+body {
+	background-color:#1b1d22; 
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size:10px;
+}
+
+a{
+	background-color:#AAAABB;
+	color: black; 
+	text-decoration: none;
+	padding-left:5px;
+	padding-right: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;	
+}
+.coftext{
+	background-color: #ffffcc;
+	color: black; 
+	text-decoration: none;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 3px;
+	padding-bottom: 3px;	
+}
+.header{
+	background-image:url(images/Header.jpg); 
+	background-repeat:no-repeat; 
+	height:80px;
+	top: 0px;
+	vertical-align: top;
+}
+
+.menu{
+	position:relative; 
+	left: 570px; 
+	top: 0px; 
+	width: 430px; 
+	height: 34px; 
+	background-repeat:no-repeat;
+}
+
+
+img {
+	border:none;
+	margin:0px;
+	padding:0px;
+}
+
+#content {
+	margin-left: 5px;
+	background:url(images/BGPlate2.jpg);
+	background-repeat: no-repeat;
+	background-attachment:local;
+	background-position: 0px 80px;
+	top: 80px;
+	height: 820px;
+	width: 1072px;
+}
+
+#pane {
+	position: absolute;
+	top: 150px;
+	left:27px;
+	color: #AAAABB;
+	margin:10px;
+	font-size:14px;
+	font-weight: bold;
+}
+
+#topctl {
+	position: absolute;
+	top: 342px;
+	left:46px;
+}
+#botctl {
+	position: absolute;
+	top: 487px;
+	left:46px;
+}
+#graph1{	
+	position: absolute;
+	top: 111px;
+	left: 476px;
+}
+#graph2{	
+	position: absolute;
+	top: 458px;
+	left: 476px;
+}
+#buttons{	
+	position: absolute;
+	top: 655px;
+	left: 75px;
+}
+#coffee{	
+	position: absolute;
+	top: 715px;
+	left: 75px;
+}
+#magChart{	
+	position: absolute;
+	top: 295px;
+	left: 1007px;
+}
+#Updated{	
+	color:#FFFFFF;
+	position: absolute;
+	top: 160px;
+	left: 65px;
+}
