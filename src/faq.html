@@ -1,17 +1,17 @@
 <!DOCTYPE html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<!-- <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/> -->
 <TITLE>SRC Comparisons - FAQ</TITLE><LINK href="mainIE.css" rel="stylesheet" type="text/css"/>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113472624-1"></script>
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113472624-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-113472624-1');
-</script>
+</script> -->
 </HEAD>
 <body style="color: white; background-color: #3D4558; font-size:10pt;">
 <strong>Frequently Asked Questions</strong><br />&nbsp;<br>
@@ -29,10 +29,10 @@ We have been considering a listening test, but decided that it is too complex to
 To limit the amount of work, we have decided to only test 96 kHz to 44.1 kHz conversion. At other sampling rates SRCs may behave differently. However in many cases they actually behave similarly.<br>&nbsp;<br>
 
 <strong>Why software X / device Y is not on the list?</strong><br>
-It means that we did not have the opportunity to test it yet. If you�d like to contribute, see below.<br>&nbsp;<br>
+It means that we did not have the opportunity to test it yet. If youÂd like to contribute, see below.<br>&nbsp;<br>
 
 <strong>How can I contribute to the test?</strong><br>
-If you have the opportunity to run our test files through a piece of software or hardware device that is of general public interest, we can add your results to this web-site. Take our set of test files from <a href="http://src.infinitewave.ca/TestSignals.zip" style="background-color:#3D4558; color:#FFFFFF; text-decoration:underline; padding-left: 0px; padding-right: 0px">http://src.infinitewave.ca/TestSignals.zip</a>. It contains 3 types of test signals at 96 kHz: a pulse train, a sine chirp, and a stereo tone. Each signal is presented in 3 different resolutions: 32-bit int, 32-bit float, and 24-bit int (listed in order of preference from high to low). Select the highest resolution that your SRC can handle and run the 3 test files through the SRC to convert them to 44.1 kHz. If your SRC has different presets for quality, select the best one or a couple of different ones � we�ll be unable to publish too many results for each SRC. During the conversion please pay attention to the fact that one of the test signals is stereo. Send the converted results as uncompressed WAV or AIFF files in a ZIP archive to src (at) infinitewave (dot) ca, and we�ll generate the graphs and publish them in a few days.<br>&nbsp;<br>
+If you have the opportunity to run our test files through a piece of software or hardware device that is of general public interest, we can add your results to this web-site. Take our set of test files from <a href="http://src.infinitewave.ca/TestSignals.zip" style="background-color:#3D4558; color:#FFFFFF; text-decoration:underline; padding-left: 0px; padding-right: 0px">http://src.infinitewave.ca/TestSignals.zip</a>. It contains 3 types of test signals at 96 kHz: a pulse train, a sine chirp, and a stereo tone. Each signal is presented in 3 different resolutions: 32-bit int, 32-bit float, and 24-bit int (listed in order of preference from high to low). Select the highest resolution that your SRC can handle and run the 3 test files through the SRC to convert them to 44.1 kHz. If your SRC has different presets for quality, select the best one or a couple of different ones Â weÂll be unable to publish too many results for each SRC. During the conversion please pay attention to the fact that one of the test signals is stereo. Send the converted results as uncompressed WAV or AIFF files in a ZIP archive to src (at) infinitewave (dot) ca, and weÂll generate the graphs and publish them in a few days.<br>&nbsp;<br>
 
 <strong>Are these results reproducible?</strong><br>
 Absolutely; you can convert the test files as described above and analyze them with any suitable spectrum analyzer, such as Adobe Audition or iZotope RX.<br>&nbsp;<br>
@@ -42,7 +42,7 @@ Dave Horrocks is the mastering engineer at Infinite Wave Mastering in Calgary, C
 Alexey Lukin is the DSP developer at iZotope Inc. and a Ph.D. member of scientific staff at Moscow State University (Russia), Dept. of Computational Mathematics and Cybernetics. Alexey is responsible for testing methodology and creation of graphs.<br>
 We also have a number of contributors who volunteered to run conversions through many SRCs, many of them are listed in Credits.<br>&nbsp;<br>
 
-<strong>Are these results biased? I�ve heard that test designer Alexey Lukin is working at iZotope � is this why iZotope is showing (one of) the best results?</strong><br>
+<strong>Are these results biased? IÂve heard that test designer Alexey Lukin is working at iZotope Â is this why iZotope is showing (one of) the best results?</strong><br>
 This web-site has been started without any participation of Alexey Lukin. It originally featured only 1 kHz tone spectra after conversion from 96 kHz to 44.1 kHz. Alexey Lukin joined the team later and proposed several new tests, such as a sine chirp and pre-post ringing test. They were discussed among our volunteers and contributors at the Mastering Webboard and found useful for analyzing different aspects of SRC algorithms. The graphs are generated in (slightly specialized) versions of RMAA and RX programs, which are co-developed by Alexey Lukin.
 We believe that all of the tested SRCs are put in fair conditions and there is no preference for any of them. The spectrum analyzers of RMAA and RX are considered accurate and they agree with other spectrum analyzers that we have tested. Our results are reproducible and verifiable, as mentioned above. If you believe that any of the results are unfair or inaccurate, please call it to our attention by emailing us.<br>
 During recent years, this web-site has helped several software manufacturers to improve or fix bugs in their SRC algorithms, and we are proud to be part of this process.<br>&nbsp;<br>
