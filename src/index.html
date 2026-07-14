@@ -6,17 +6,17 @@
 <title>SRC Comparisons</title>
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
-<script src="IW1.js@v=2.1.1"></script>
+<script src="IW1.js?v=2.1.1"></script>
 <script>
 var LoadingImage = new Image;
 LoadingImage.src = "images/Loading.png";
-var NumSRC = 376 - 1; 
+var NumSRC = 385 - 1;
 var tWhere = gup('Top');
 var bWhere = gup('Bot');
-var Spec = false;    
+var Spec = false;
 function Top_MC(){
-	e = document.getElementById("topImage");
-	e.src = LoadingImage.src;
+	//e = document.getElementById("topImage");
+	//e.src = LoadingImage.src;
 	change_Top_Pic();
 	if (document.subPane2.matchTop_dm.checked == true){
 		document.subPane2.bMode.value = document.subPane1.tMode.value;
@@ -24,8 +24,8 @@ function Top_MC(){
 	}
 }
 function Bot_MC(){
-	e = document.getElementById("bottomImage");
-	e.src = LoadingImage.src;
+	//e = document.getElementById("bottomImage");
+	//e.src = LoadingImage.src;
 	change_Bottom_Pic();
 	if (document.subPane2.matchTop_dm.checked == true){
 		document.subPane1.tMode.value = document.subPane2.bMode.value;
@@ -33,17 +33,17 @@ function Bot_MC(){
 	}
 }
 function tPack_C(){
-	e = document.getElementById("topImage");
-	e.src = LoadingImage.src;
+	//e = document.getElementById("topImage");
+	//e.src = LoadingImage.src;
 	change_Top_Pic();
 	if (document.subPane2.matchTop_pack.checked == true){
 		document.subPane2.bPack.value = document.subPane1.tPack.value;
-		change_Bottom_Pic();	
+		change_Bottom_Pic();
 	}
 }
 function bPack_C(){
-	e = document.getElementById("bottomImage");
-	e.src = LoadingImage.src;
+	//e = document.getElementById("bottomImage");
+	//e.src = LoadingImage.src;
 	change_Bottom_Pic();
 	if (document.subPane2.matchTop_pack.checked == true){
 		document.subPane1.tPack.value = document.subPane2.bPack.value;
@@ -66,7 +66,7 @@ function change_Top_Pic(){
 	} else{
 		e = document.getElementById("chart1");
 		e.src = "images/BlankChart.jpg";
-	}	
+	}
 }
 function change_Bottom_Pic(){
 	var bottomPic = document.subPane2.bMode.value + document.subPane2.bPack.value;
@@ -84,34 +84,34 @@ function but_TopNext(){
 	a = document.subPane1.tPack.selectedIndex + 1;
 	if (a > NumSRC) {a = 0;}
 	document.subPane1.tPack.selectedIndex = a;
-	tPack_C();	
+	tPack_C();
 }
 function but_TopPrev(){
 	a = document.subPane1.tPack.selectedIndex - 1;
 	if (a < 0) {a = NumSRC;}
 	document.subPane1.tPack.selectedIndex = a;
-	tPack_C();	
+	tPack_C();
 }
 function but_BotNext(){
 	a = document.subPane2.bPack.selectedIndex + 1;
 	if (a > NumSRC) {a = 0;}
 	document.subPane2.bPack.selectedIndex = a;
-	bPack_C();	
+	bPack_C();
 }
 function but_BotPrev(){
 	a = document.subPane2.bPack.selectedIndex - 1;
 	if (a < 0) {a = NumSRC;}
 	document.subPane2.bPack.selectedIndex = a;
-	bPack_C();	
+	bPack_C();
 }
-function gup( name ){  
-	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
-	var regexS = "[\\?&]"+name+"=([^&#]*)";  
-	var regex = new RegExp( regexS );  
-	var results = regex.exec( window.location.href );  
-	if( results == null )    
-		return "";  
-	else    
+function gup( name ){
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+		return "";
+	else
 		return results[1];
 }
 function loadSaved(){
@@ -125,7 +125,7 @@ function loadSaved(){
     document.subPane2.bMode.selectedIndex = d;
     temp = document.getElementById('bPack');
     temp.value = bWhere + ".png";
-    
+
     tPack_C();
     bPack_C();
 }
@@ -137,7 +137,7 @@ function Feed(){
             var tRandom = (Math.floor(Math.random() * NumSRC/2))+1;
             var bRandom = Math.floor((NumSRC/2) + (Math.random() * ((NumSRC/2)+1)));
             document.subPane1.tPack.selectedIndex = tRandom;
-            document.subPane2.bPack.selectedIndex = bRandom;    
+            document.subPane2.bPack.selectedIndex = bRandom;
             tPack_C();
             bPack_C();
        }
@@ -154,7 +154,7 @@ function Feed(){
                 document.subPane2.bPack.value = bWhere;
                 tPack_C();
                 bPack_C();
-            }	
+            }
         }
     }
 }
@@ -164,28 +164,14 @@ function copyIt(){
     if (document.subPane2.matchTop_dm.checked){b = 1;}else{b=0;}
     c = document.subPane1.tMode.selectedIndex;
     d = document.subPane2.bMode.selectedIndex;
-    var copyText = "https://megapro17.github.io/src/index.html?Top=" + document.subPane1.tPack.value.substring(0, document.subPane1.tPack.value.length-4) + "&Bot=" + document.subPane2.bPack.value.substring(0, document.subPane2.bPack.value.length-4);
+    var copyText = "https://src.infinitewave.ca/?Top=" + document.subPane1.tPack.value.substring(0, document.subPane1.tPack.value.length-4) + "&Bot=" + document.subPane2.bPack.value.substring(0, document.subPane2.bPack.value.length-4);
     copyText += "&Spec=" + a+b+c+d;
-    var bucket = document.createElement('textarea');
-    bucket.value = copyText;
-    bucket.setAttribute('readonly', '');
-    bucket.style = {position: 'absolute', left: '-9999px'};
-    document.body.appendChild(bucket);
-    bucket.select();
-    document.execCommand('copy');
-    document.body.removeChild(bucket);
-    alert("Link sent to the clipboard.");
+    navigator.clipboard.writeText(copyText).then(function() {
+        alert("Link sent to the clipboard.");
+    });
 }
 
 </script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113472624-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-113472624-1');
-</script> -->
 </head>
 <body onload="Feed();">
     <table style="width:1072px; padding: 0px; border-spacing:0px; border:none; vertical-align:top; position:absolute; top: 0px;">
@@ -248,13 +234,14 @@ function copyIt(){
 							<option value="Audiomove.png">Audiomove 1.2 (Best)</option>
 							<option value="ART_Preset2.png">Audio Resampling Tool (ART) 0.1 (preset 2)</option>
                             <option value="ART_preset3.png">Audio Resampling Tool (ART) 0.1 (preset 3)</option>
-                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>    
+                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>
                             <option value="AuIConvert.png">AuI Converter 48x44 Pro &amp; Free v.1.5</option>
                             <option value="Aui121.png">AuI Converter 48x44 Free v.1.2.1.0</option>
                             <option value="AWaveStudio103.png">Awave Studio 10.3</option>
 							<option value="Barbabatch.png">Barbabatch</option>
 							<option value="PeakPro603.png">Bias Peak Pro 6.03</option>
 							<option value="PeakPro52.png">Bias Peak Pro 5.2</option>
+							<option value="Bitwig44.png">Bitwig 4.4.1</option>
 							<option value="Bitwig24.png">Bitwig 2.4.3</option>
 							<option value="Bitwig214.png">Bitwig 2.1.4</option>
 							<option value="Bitwig13.png">Bitwig 1.3.15</option>
@@ -265,6 +252,7 @@ function copyIt(){
 							<option value="Cubase10b.png">Cubase 10</option>
 							<option value="Cubase95.png">Cubase 9.5</option>
 							<option value="Cubase4.png">Cubase 4, 5, 6, 7, 8 and 9</option>
+							<option value="Resolve20.png">DaVinci Resolve 2.0</option>
 							<option value="dBPowerAmp17.png">dBPowerAmp 17 Beta</option>
 							<option value="dBPowerAmp.png">dBpoweramp Music Converter 15.1</option>
 							<option value="DCF8.png">Diamond Cut Forensics 8 Audio Laboratory</option>
@@ -273,10 +261,12 @@ function copyIt(){
 							<option value="DP7.png">Digital Performer 7</option>
 							<option value="DP6.png">Digital Performer 6</option>
 							<option value="DigitalPerformer51.png">Digital Performer 5.1</option>
+							<option value="DSP.png">DSP .939 bandwidth (<a href="https://github.com/bmc0/dsp">gitHub</a>)</option>
 							<option value="DspQuattro.png">DSP-Quattro 4.2.2</option>
 							<option value="DspQuattro.png">DSP-Quattro 3.5.1</option>
 							<option value="DspQuattro.png">DSP-Quattro 2.5.1 (Excellent)</option>
 							<option value="EAC3TO.png">eac3to (SSRC)</option>
+							<option value="EZCD12.png">EZ CD Audio Converter 12</option>
 							<option value="EZCD91.png">EZ CD Audio Converter 9.1</option>
 							<option value="EZCD83_steep.png">EZ CD Audio Converter 8.3 Steep</option>
 							<option value="EZCD83_steepaliasing.png">EZ CD Audio Converter 8.3 Steep Aliasing</option>
@@ -299,7 +289,8 @@ function copyIt(){
                             <option value="ffmpeg111_soxr.png">ffmpeg 1.1.1 (soxr)</option>
                             <option value="ffmpeg111_swr.png">ffmpeg 1.1.1 (swr)</option>
                             <option value="ffmpeg.png">ffmpeg 0.10.4</option>
-                            <option value="FinalCD017_Goldilocks.png">FinalCD 0.17 (&quot;Goldilocks&quot; Medium Filter)</option>
+                            <option value="FinalCD029.png">FinalCD 0.29</option>
+							<option value="FinalCD017_Goldilocks.png">FinalCD 0.17 (&quot;Goldilocks&quot; Medium Filter)</option>
                             <option value="FinalCD016_Gentle.png">FinalCD 0.12 -&gt; 0.16 (Gentle)</option>
                             <option value="FinalCD012.png">FinalCD 0.12 -&gt; 0.16 (Sharp)</option>
                             <option value="MacFirefox126.png">Mozilla Firefox 126 (on Mac)</option>
@@ -333,6 +324,7 @@ function copyIt(){
 							<option value="FooDspdBPowerAmp.png">FooDsp dBPowerAmp mode</option>
 							<option value="FooDsp083.png">foo_dsp_resampler</option>
 							<option value="Frankl.png">Frankl resample_soxr (phase=45 v0.8)</option>
+							<option value="Freac117.png">fre:ac 1.1.7</option>
 							<option value="FScape_FIR.png">FScape 0.66</option>
 							<option value="FScape_FIRint.png">FScape 0.66 (int)</option>
 							<option value="GoldWave67.png">Gold Wave 6.7</option>
@@ -347,6 +339,8 @@ function copyIt(){
 							<option value="SuperVP_ResS160.png">IRCAM  SuperVP (160dB SNR)</option>
 							<option value="iZotope_USNA.png">iZotope 64 bit SRC Steep, No Alias</option>
 							<option value="iZotope_IP.png">iZotope 64 bit SRC Intermed. Phase</option>
+							<option value="RX11_Default.png">iZotope RX 11</option>
+							<option value="RX9_Default.png">iZotope RX 9</option>
 							<option value="RX81_Default.png">iZotope RX 8.1 (Default)</option>
 							<option value="RX81_InterPhase.png">iZotope RX 8.1 (Intermediate phase)</option>
 							<option value="RX7_SteepMP.png">iZotope RX 7 (MP, steepness = 2000, cutoff = 0.99)</option>
@@ -401,11 +395,11 @@ function copyIt(){
 							<option value="OpenMPT_Kaiser.png">OpenMPT (Kaiser)</option>
 							<option value="OpenMPT_Polyphase.png">OpenMPT (Polyphase)</option>
 							<option value="Pipewire_Q4.png">Pipewire 0.3.47 (Quality 4)</option>
-							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>	
+							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>
 							<option value="Pipewire_Q1.png">Pipewire (Quality 1)</option>
 							<option value="Pipewire_4.png">Pipewire (Quality 4)</option>
                             <option value="Pipewire_10.png">Pipewire (Quality 10)</option>
-                            <option value="Pipewire_Q14.png">Pipewire Quality 14)</option>
+                            <option value="Pipewire_Q14.png">Pipewire (Quality 14)</option>
 							<option value="PresonusABC.png">PreSonus Audio Batch Converter (6.0.1.90430)</option>
                             <option value="ProAudioConverter.png">Pro Audio Converter from Mark V Apps</option>
 							<option value="ProTools2021.png">ProTools 2021</option>
@@ -446,6 +440,7 @@ function copyIt(){
 							<option value="Reaper5.png">Reaper 5.01 (new Extreme preset, 768 pt sinc)</option>
 							<option value="Reaper551.png">Reaper 5.51</option>
 							<option value="Reaper6_extremeHQ.png">Reaper 6 (extreme HQ)</option>
+							<option value="Reason130.png">Propellerhead Reason 13</option>
 							<option value="Reason95.png">Propellerhead Reason 9.5</option>
 							<option value="Reason83.png">Propellerhead Reason 8.3</option>
 							<option value="Reason7.png">Propellerhead Reason 7</option>
@@ -511,9 +506,9 @@ function copyIt(){
 							<option value="SoundForge8_AA.png">SoundForge 9.0 Anti-Aliasing</option>
 							<option value="SoundForgePro11.png">Sound Forge Pro 1.0.23 (Mac)</option>
 							<option value="Soundhack.png">Soundhack</option>
-							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>							
-                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>							
-                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>							
+							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>
+                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>
+                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>
                             <option value="SoundStudio.png">SoundStudio 3.5.7</option>
 							<option value="SoundStudio464.png">Sound Studio 4.6.4</option>
 							<option value="SoX144_HQ.png">SoX 14.4 High Quality</option>
@@ -573,7 +568,7 @@ function copyIt(){
 							<option value="Wavosaur103_bl.png">Wavosaur 1.0.3.0 Band Limited</option>
 							<option value="Saracon.png">Weiss Saracon 1.6</option>
 							<option value="SFC2.png">Weiss SFC2</option>
-                            <option value="Windows10.png">Windows 10 DS resampler</option>                            
+                            <option value="Windows10.png">Windows 10 DS resampler</option>
 							<option value="XiphSpeex12_q10.png">Xiph.org Speex 1.2rc1 (Quality 10)</option>
 							<option value="XiSRC.png">XiSRC 1.0.4</option>
 							<option value="XLD.png">XLD 10.4</option>
@@ -581,7 +576,7 @@ function copyIt(){
 							<option value="XRECODE3_sox.png">XRECODE 3 [64-bit] 1.77 SOX</option>
 							<option value="Libzita.png">Zita Resampler</option>
 							<option value="ZSystems.png">ZSystems z-3src</option>
-						</select>					
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -599,13 +594,13 @@ function copyIt(){
 							<option value="images/Transition/">Transition</option>
 							<option value="images/Phase/">Phase</option>
 							<option value="images/Impulse/">Impulse</option>
-						</select>	&nbsp;	
-						<input type="button" onclick="but_TopPrev()" value="<" >&nbsp;						
+						</select>	&nbsp;
+						<input type="button" onclick="but_TopPrev()" value="<" >&nbsp;
 						<input type="button" onclick="but_TopNext()" value=">" >
 					</td>
 				</tr>
 				<tr>
-					<td>&nbsp;	
+					<td>&nbsp;
 					</td>
 					<td><br>
 					</td>
@@ -664,13 +659,14 @@ function copyIt(){
 							<option value="Audiomove.png">Audiomove 1.2 (Best)</option>
 							<option value="ART_Preset2.png">Audio Resampling Tool (ART) 0.1 (preset 2)</option>
                             <option value="ART_preset3.png">Audio Resampling Tool (ART) 0.1 (preset 3)</option>
-                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>    
+                            <option value="ART_Preset4.png">Audio Resampling Tool (ART) 0.1 (preset 4)</option>
                             <option value="AuIConvert.png">AuI Converter 48x44 Pro &amp; Free v.1.5</option>
                             <option value="Aui121.png">AuI Converter 48x44 Free v.1.2.1.0</option>
                             <option value="AWaveStudio103.png">Awave Studio 10.3</option>
 							<option value="Barbabatch.png">Barbabatch</option>
 							<option value="PeakPro603.png">Bias Peak Pro 6.03</option>
 							<option value="PeakPro52.png">Bias Peak Pro 5.2</option>
+							<option value="Bitwig44.png">Bitwig 4.4.1</option>
 							<option value="Bitwig24.png">Bitwig 2.4.3</option>
 							<option value="Bitwig214.png">Bitwig 2.1.4</option>
 							<option value="Bitwig13.png">Bitwig 1.3.15</option>
@@ -681,6 +677,7 @@ function copyIt(){
 							<option value="Cubase10b.png">Cubase 10</option>
 							<option value="Cubase95.png">Cubase 9.5</option>
 							<option value="Cubase4.png">Cubase 4, 5, 6, 7, 8 and 9</option>
+							<option value="Resolve20.png">DaVinci Resolve 2.0</option>
 							<option value="dBPowerAmp17.png">dBPowerAmp 17 Beta</option>
 							<option value="dBPowerAmp.png">dBpoweramp Music Converter 15.1</option>
 							<option value="DCF8.png">Diamond Cut Forensics 8 Audio Laboratory</option>
@@ -689,10 +686,12 @@ function copyIt(){
 							<option value="DP7.png">Digital Performer 7</option>
 							<option value="DP6.png">Digital Performer 6</option>
 							<option value="DigitalPerformer51.png">Digital Performer 5.1</option>
+							<option value="DSP.png">DSP .939 bandwidth (<a href="https://github.com/bmc0/dsp">gitHub</a>)</option>
 							<option value="DspQuattro.png">DSP-Quattro 4.2.2</option>
 							<option value="DspQuattro.png">DSP-Quattro 3.5.1</option>
 							<option value="DspQuattro.png">DSP-Quattro 2.5.1 (Excellent)</option>
 							<option value="EAC3TO.png">eac3to (SSRC)</option>
+							<option value="EZCD12.png">EZ CD Audio Converter 12</option>
 							<option value="EZCD91.png">EZ CD Audio Converter 9.1</option>
 							<option value="EZCD83_steep.png">EZ CD Audio Converter 8.3 Steep</option>
 							<option value="EZCD83_steepaliasing.png">EZ CD Audio Converter 8.3 Steep Aliasing</option>
@@ -715,6 +714,7 @@ function copyIt(){
                             <option value="ffmpeg111_soxr.png">ffmpeg 1.1.1 (soxr)</option>
                             <option value="ffmpeg111_swr.png">ffmpeg 1.1.1 (swr)</option>
                             <option value="ffmpeg.png">ffmpeg 0.10.4</option>
+                            <option value="FinalCD029.png">FinalCD 0.29</option>
                             <option value="FinalCD017_Goldilocks.png">FinalCD 0.17 (&quot;Goldilocks&quot; Medium Filter)</option>
                             <option value="FinalCD016_Gentle.png">FinalCD 0.12 -&gt; 0.16 (Gentle)</option>
                             <option value="FinalCD012.png">FinalCD 0.12 -&gt; 0.16 (Sharp)</option>
@@ -749,6 +749,7 @@ function copyIt(){
 							<option value="FooDspdBPowerAmp.png">FooDsp dBPowerAmp mode</option>
 							<option value="FooDsp083.png">foo_dsp_resampler</option>
 							<option value="Frankl.png">Frankl resample_soxr (phase=45 v0.8)</option>
+							<option value="Freac117.png">fre:ac 1.1.7</option>
 							<option value="FScape_FIR.png">FScape 0.66</option>
 							<option value="FScape_FIRint.png">FScape 0.66 (int)</option>
 							<option value="GoldWave67.png">Gold Wave 6.7</option>
@@ -763,6 +764,8 @@ function copyIt(){
 							<option value="SuperVP_ResS160.png">IRCAM  SuperVP (160dB SNR)</option>
 							<option value="iZotope_USNA.png">iZotope 64 bit SRC Steep, No Alias</option>
 							<option value="iZotope_IP.png">iZotope 64 bit SRC Intermed. Phase</option>
+							<option value="RX11_Default.png">iZotope RX 11</option>
+							<option value="RX9_Default.png">iZotope RX 9</option>
 							<option value="RX81_Default.png">iZotope RX 8.1 (Default)</option>
 							<option value="RX81_InterPhase.png">iZotope RX 8.1 (Intermediate phase)</option>
 							<option value="RX7_SteepMP.png">iZotope RX 7 (MP, steepness = 2000, cutoff = 0.99)</option>
@@ -817,11 +820,11 @@ function copyIt(){
 							<option value="OpenMPT_Kaiser.png">OpenMPT (Kaiser)</option>
 							<option value="OpenMPT_Polyphase.png">OpenMPT (Polyphase)</option>
 							<option value="Pipewire_Q4.png">Pipewire 0.3.47 (Quality 4)</option>
-							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>	
+							<option value="Pipewire_Q10.png">Pipewire 0.3.47 (Quality 10)</option>
 							<option value="Pipewire_Q1.png">Pipewire (Quality 1)</option>
 							<option value="Pipewire_4.png">Pipewire (Quality 4)</option>
                             <option value="Pipewire_10.png">Pipewire (Quality 10)</option>
-                            <option value="Pipewire_Q14.png">Pipewire Quality 14)</option>
+                            <option value="Pipewire_Q14.png">Pipewire (Quality 14)</option>
 							<option value="PresonusABC.png">PreSonus Audio Batch Converter (6.0.1.90430)</option>
                             <option value="ProAudioConverter.png">Pro Audio Converter from Mark V Apps</option>
 							<option value="ProTools2021.png">ProTools 2021</option>
@@ -862,6 +865,7 @@ function copyIt(){
 							<option value="Reaper5.png">Reaper 5.01 (new Extreme preset, 768 pt sinc)</option>
 							<option value="Reaper551.png">Reaper 5.51</option>
 							<option value="Reaper6_extremeHQ.png">Reaper 6 (extreme HQ)</option>
+							<option value="Reason130.png">Propellerhead Reason 13</option>
 							<option value="Reason95.png">Propellerhead Reason 9.5</option>
 							<option value="Reason83.png">Propellerhead Reason 8.3</option>
 							<option value="Reason7.png">Propellerhead Reason 7</option>
@@ -927,9 +931,9 @@ function copyIt(){
 							<option value="SoundForge8_AA.png">SoundForge 9.0 Anti-Aliasing</option>
 							<option value="SoundForgePro11.png">Sound Forge Pro 1.0.23 (Mac)</option>
 							<option value="Soundhack.png">Soundhack</option>
-							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>							
-                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>							
-                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>							
+							<option value="Sculptor31.png">Sound Sculptor Pro 3.1</option>
+                            <option value="SoundSculptor302.png">Sound Sculptor Pro 3.0.2</option>
+                            <option value="SoundSculpt3.png">Sound Sculptor Pro 3.0</option>
                             <option value="SoundStudio.png">SoundStudio 3.5.7</option>
 							<option value="SoundStudio464.png">Sound Studio 4.6.4</option>
 							<option value="SoX144_HQ.png">SoX 14.4 High Quality</option>
@@ -989,7 +993,7 @@ function copyIt(){
 							<option value="Wavosaur103_bl.png">Wavosaur 1.0.3.0 Band Limited</option>
 							<option value="Saracon.png">Weiss Saracon 1.6</option>
 							<option value="SFC2.png">Weiss SFC2</option>
-                            <option value="Windows10.png">Windows 10 DS resampler</option>                            
+                            <option value="Windows10.png">Windows 10 DS resampler</option>
 							<option value="XiphSpeex12_q10.png">Xiph.org Speex 1.2rc1 (Quality 10)</option>
 							<option value="XiSRC.png">XiSRC 1.0.4</option>
 							<option value="XLD.png">XLD 10.4</option>
@@ -997,7 +1001,7 @@ function copyIt(){
 							<option value="XRECODE3_sox.png">XRECODE 3 [64-bit] 1.77 SOX</option>
 							<option value="Libzita.png">Zita Resampler</option>
 							<option value="ZSystems.png">ZSystems z-3src</option>
-						</select>						
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1015,8 +1019,8 @@ function copyIt(){
 							<option value="images/Transition/">Transition</option>
 							<option value="images/Phase/">Phase</option>
 							<option value="images/Impulse/">Impulse</option>
-						</select>	&nbsp;	
-						<input type="button" onclick="but_BotPrev()" value="<" >&nbsp;						
+						</select>	&nbsp;
+						<input type="button" onclick="but_BotPrev()" value="<" >&nbsp;
 						<input type="button" onclick="but_BotNext()" value=">" >
 					</td>
 				</tr>
@@ -1027,7 +1031,7 @@ function copyIt(){
 					</td>
 				</tr>
 				<tr>
-					<td>&nbsp;	
+					<td>&nbsp;
 					</td>
 					<td><br>
 					</td>
@@ -1047,8 +1051,8 @@ function copyIt(){
         <a href="crdt.html" onclick="window.open('crdt.html', 'Credits','location=0,status=0,scrollbars=1,width=415,height=500');return false;">&nbsp;CREDITS&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a onclick="copyIt()" title="Copies a link (to the current view) to your clipboard." style="cursor: pointer;">&nbsp;SHARE&nbsp;</a>
     </div>
-	    <div id="Updated">Last Updated: 16 February 2025</div>
-    <div style="position: absolute; top: 210px; left: 62px; z-index: 0;"><img src="images/Social.jpg" style="border: none; display: block !important;" usemap="#SMap" alt = "Social Links" ></div> 
+	    <div id="Updated">Last Updated: 22 April 2026</div>
+    <div style="position: absolute; top: 210px; left: 62px; z-index: 0;"><img src="images/Social.jpg" style="border: none; display: block !important;" usemap="#SMap" alt = "Social Links" ></div>
 <map name="SMap">
 	<area shape="rect" coords="0,0,33,33" href="soc.php?w=f" target="_blank" alt="Visit Us on Facebook" >
     <area shape="rect" coords="34,0,66,33" href="soc.php?w=l" target="_blank" alt="Visit Us on LinkedIn" >

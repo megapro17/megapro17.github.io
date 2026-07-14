@@ -6,210 +6,217 @@
     <title>Infinite Wave Mastering - SRC Comparisons</title>
     <description>Comparisons of the performance of software and hardware sample rate converters.</description>
     <link>https://src.infinitewave.ca</link>
-	
+
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Creative WaveStudio 7 and Smarc 3.</description>
       <link>https://src.infinitewave.ca/index.html?Top=WaveStudio7&amp;Bot=Smarc03</link>
 	  <guid>https://src.infinitewave.ca/00052</guid>
 	  <pubDate>Sun, 05 Feb 2017 00:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Adobe Audtition 10 (CC 2017), Bitwig 1.3, Ferocious Resampler and Pyramix 10.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Audition10&amp;Bot=Ferocious_std</link>
 	  <guid>https://src.infinitewave.ca/00053</guid>
 	  <pubDate>Thu, 16 Mar 2017 00:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Addition to the SRC page</title>
       <description>We just added results for Reaper 5.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Reaper5</link>
 	  <guid>https://src.infinitewave.ca/00054</guid>
 	  <pubDate>Mon, 27 Mar 2017 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Addition to the SRC page</title>
       <description>We just added results for Pro Audio Converter from Mark V Apps.</description>
       <link>https://src.infinitewave.ca/index.html?Top=ProAudioConverter</link>
 	  <guid>https://src.infinitewave.ca/00055</guid>
 	  <pubDate>Fri, 12 May 2017 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Ableton Live 9.73, Bitwig 2.1.4, Reaper 5.51, Studio One 2.51 and Cubase 9. More to come soon.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Live973</link>
 	  <guid>https://src.infinitewave.ca/00056</guid>
 	  <pubDate>Mon, 12 Feb 2018 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Amadeus Pro 2.4.2, Sonar 23.10, Cubase 9.5, Protools 2018, Acoustica 7.0.51, TASCAM Hi-res Editor 1.03, Logic Pro X 10.3.2, Native Instruments Kontakt 5.7.1 R35, WaveLab 9.5.10 Build 17, Studio One 3 -, Presence XT And Propellerhead Reason 9.5. Whew!</description>
       <link>https://src.infinitewave.ca/index.html?Top=Amadeus242&amp;Bot=Sonar2310</link>
 	  <guid>https://src.infinitewave.ca/00057</guid>
 	  <pubDate>Wed, 14 Mar 2018 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for ffmpeg 3.4.2 (swr), Frankl resample_soxr, Hofa CD Burn &amp; DDP 1.6.10, Lake People DAT RS 05, XRECODE 3 [64-bit] 1.77 SWR and XRECODE 3 [64-bit] 1.77 SOX. Thanks to everyone that contributed conversions for us.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Hofa&amp;Bot=XRECODE3_swr</link>
 	  <guid>https://src.infinitewave.ca/00058</guid>
 	  <pubDate>Wed, 20 Jun 2018 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Hofa CD Burn &amp; DDP 1.6.10, Hofa CD Burn &amp; DDP 2.0.4, and Fission 2.4.1. Thanks to everyone that contributed conversions for us.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Hofa16&amp;Bot=Hofa20</link>
 	  <guid>https://src.infinitewave.ca/00059</guid>
 	  <pubDate>Tue, 17 Jul 2018 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>We just added results for Windows 10 DS Converter, Cubase 10, and several conversions for EZ CD Audio Converter 8.0.6.</description>
       <link>https://src.infinitewave.ca/index.html?Top=EZCD8_Opus5&amp;Bot=Windows10</link>
 	  <guid>https://src.infinitewave.ca/00060</guid>
 	  <pubDate>Sun, 03 Feb 2019 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page, and a correction.</title>
       <description>We just added results for Adobe Audition 2019, Bitwig 2.4.3, KFR 3.0.2 (C++ library), and a new conversion from Cubase 10, as there was an issue with the last one.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Cubase10b&amp;Bot=Bitwig24</link>
 	  <guid>https://src.infinitewave.ca/00061</guid>
 	  <pubDate>Sat, 09 Feb 2019 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page...</title>
       <description>Courtesy of the current lockdown, I have finally had time to post some of the results backlog. These include: 	Sequoia 14 (UH-2), r8brain2, Ableton Live 10.1, iZotope RX6, FL Studio 20.1.2.877, several conversion from EZ CD 8.3, and a whack of different ones from FooDSP. More results to follow (fairly) soon.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Live10&amp;Bot=EdisonFL20</link>
 	  <guid>https://src.infinitewave.ca/00062</guid>
 	  <pubDate>Sun, 22 Mar 2020 02:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>24 new conversions from Protools 2019, Reaper 6, r8brain 2.2, Pipewire, Sample Manager 3.4.1, Soundforge 11,12 and 13, Samplitude Pro X3, Twisted Wave (ios), Audio Mastering (ios), Audition 2018, dbPowerAmp 17 Beta, EZ CD Audio Converter 9.1, Hawksford Spectral Domain, and the Lurssen Mastering Console</description>
       <link>https://src.infinitewave.ca/index.html?Top=r8brain22_PreciseLP&amp;Bot=Reaper6_extremeHQ</link>
 	  <guid>https://src.infinitewave.ca/00063</guid>
 	  <pubDate>Sat, 18 Apr 2020 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>7 new conversions from Ardour 5, ffmpeg 4.2.2, Hawksford Spectral Domain, LMMS 1.2.1 and Vegas 17</description>
       <link>https://src.infinitewave.ca/index.html?Top=Ardour5&amp;Bot=Vegas17</link>
 	  <guid>https://src.infinitewave.ca/00064</guid>
 	  <pubDate>Sat, 23 May 2020 15:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>New conversions from Myriad 4.4, Myriad 4.6 (Apple), Myriad 4.6 (Zynaptic) and Tracktion Waveform 10</description>
       <link>https://src.infinitewave.ca/index.html?Top=Myriad46_Zynaptic&amp;Bot=Tracktion10</link>
 	  <guid>https://src.infinitewave.ca/00065</guid>
 	  <pubDate>Mon, 21 Sep 2020 15:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>Two new conversions from iZotope RX 8.1. 'Default' and 'Intermediate Phase'</description>
       <link>https://src.infinitewave.ca/index.html?Top=RX81_Default&amp;Bot=RX81_InterPhase</link>
 	  <guid>https://src.infinitewave.ca/00066</guid>
 	  <pubDate>Thu, 08 Oct 2020 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>5 new conversions from Audacity 2.4.2, Nuendo 11, and three conversions from r8brain Pro 2.9.</description>
       <link>https://src.infinitewave.ca/index.html?Top=Audacity242&amp;Bot=r8brainPro29_FastLP</link>
 	  <guid>https://src.infinitewave.ca/00067</guid>
 	  <pubDate>Tue, 23 Feb 2021 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>New conversions added to the page from Acon Digital Acoustica 7.3, Audacity 3, Adobe Audition 14, Renoise 3.3.1, Sequoia 15, Wavelab Pro 10 and an extreme setting for iZotope RX 7 (MP, steepness = 2000, cutoff = 0.99).</description>
       <link>https://src.infinitewave.ca/index.html?Top=Audition14&amp;Bot=Sequoia15_UH2</link>
 	  <guid>https://src.infinitewave.ca/00068</guid>
 	  <pubDate>Sat, 08 May 2021 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>New conversions added to the page from foobar2000 RetroArch, Logic Pro 10.6.2, Protools 2021, SoundEngine Free 5 and Tracktion Waveform PRO 11.5.17.</description>
       <link>https://src.infinitewave.ca/index.html?Top=ProTools2021&amp;Bot=Waveform11_Hybrid</link>
 	  <guid>https://src.infinitewave.ca/00069</guid>
 	  <pubDate>Sat, 14 Aug 2021 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>Two new conversions added to the page from Pipewire 0.3.47 (Quality 4 and 10).</description>
       <link>https://src.infinitewave.ca/index.html?Top=Pipewire_Q4&amp;Bot=Pipewire_Q10</link>
 	  <guid>https://src.infinitewave.ca/00070</guid>
 	  <pubDate>Thu, 28 Apr 2022 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Additions to the SRC page</title>
       <description>Three new conversions added to the page from Acon Digital Acoustica 7.4, Spectral Layers 9.0.10 and XLD 10.4.</description>
       <link>https://src.infinitewave.ca/index.html?Top=SpectraLayers9&amp;Bot=XLD</link>
 	  <guid>https://src.infinitewave.ca/00071</guid>
 	  <pubDate>Sat, 17 Sep 2022 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Functionality</title>
       <description>The two converters initially displayed are now randomized.</description>
       <link>https://src.infinitewave.ca</link>
 	  <guid>https://src.infinitewave.ca/00072</guid>
 	  <pubDate>Sun, 18 Sep 2022 08:00:00 GMT</pubDate>
-    </item>		
+    </item>
 	<item>
       <title>New Functionality</title>
       <description>EMBED button has been added. This copies a link to the current view to the clipboard.</description>
       <link>https://src.infinitewave.ca</link>
 	  <guid>https://src.infinitewave.ca/00073</guid>
 	  <pubDate>Sun, 18 Sep 2022 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>EMBED button has been added. This copies a link to the current view to the clipboard.</description>
       <link>https://src.infinitewave.ca/?Top=ART_preset3&amp;Bot=PresonusABC&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00074</guid>
 	  <pubDate>Thu, 08 Dec 2022 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>Three new conversions added to the page from Audio Resampling Tool (Presets 2 and 4) and Gold Wave 6.7.</description>
       <link>https://src.infinitewave.ca/?Top=GoldWave67&amp;Bot=ART_Preset4&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00075</guid>
 	  <pubDate>Sat, 17 Jun 2023 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>Three new conversions were added to the SRC page today. Nuendo 12, Logic Pro for iPad, and Wavelab Elements 11.</description>
       <link>https://src.infinitewave.ca/?Top=LogicProIPad&amp;Bot=WavelabE11&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00076</guid>
 	  <pubDate>Sun, 15 Oct 2023 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>Two new conversions were added to the SRC page today. MainConcept TotalCode Studio 5.3.0 and Magix Sequoia 16.</description>
       <link>https://src.infinitewave.ca/?Top=MainConceptTCS53&amp;Bot=Sequoia16&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00077</guid>
 	  <pubDate>Wed, 03 Jan 2024 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>Two new conversions were added to the SRC page today. Camilla DSP and Digital Performer 11.</description>
       <link>https://src.infinitewave.ca/?Top=CamillaDSP_c089&amp;Bot=DP11&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00078</guid>
 	  <pubDate>Mon, 12 Feb 2024 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>New conversions were added to the SRC page today. UAD LUNA 16, and conversions from Chrome, Firefox and Safari browsers on Mac.</description>
       <link>https://src.infinitewave.ca/?Top=UADLuna16&amp;Bot=MacChrome125&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00079</guid>
 	  <pubDate>Sat, 10 Aug 2024 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
  	<item>
       <title>New Additions to the SRC page</title>
       <description>New conversions were added to the SRC page today: Cubase 14, Nuendo 13, FFMPEG 7.1, Renoise 3.5, Sequoia 17, SpectralLayers Pro 11, Wavelab Pro 12, r8brain Pro 2.12, and Zynaptiq Triumph 3 KSRC.</description>
       <link>https://src.infinitewave.ca/?Top=Renoise35&amp;Bot=Triumph3_KSRC&amp;Spec=0100</link>
 	  <guid>https://src.infinitewave.ca/00080</guid>
 	  <pubDate>Sun, 16 Feb 2025 09:00:00 GMT</pubDate>
-    </item>		
+    </item>
+ 	<item>
+      <title>New Additions to the SRC page</title>
+      <description>Eight new conversions were added to the SRC page today: FinalCD 0.29, Propellerhead Reason 13, iZotope RX 9, iZotope RX 11, DSP .939 bandwidth, EZ CD Audio Converter 12, fre:ac 1.1.7, and DaVinci Resolve 2.0.</description>
+      <link>https://src.infinitewave.ca/?Top=Freac117&amp;Bot=Resolve20&amp;Spec=1100</link>
+	  <guid>https://src.infinitewave.ca/00081</guid>
+	  <pubDate>Wed, 22 Apr 2026 09:00:00 GMT</pubDate>
+    </item>
 </channel>
 </rss>
 

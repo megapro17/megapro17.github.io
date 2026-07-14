@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>SRC Comparisons</title>
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+
+<script src="IW1.js?v=2.1.1"></script>
+<script>
+var LoadingImage = new Image;
+LoadingImage.src = "images/Loading.png";
+var NumSRC = 385 - 1;
+var tWhere = gup('Top');
+var bWhere = gup('Bot');
+var Spec = false;
+function Top_MC(){
+	e = document.getElementById("topImage");
+	e.src = LoadingImage.src;
+	change_Top_Pic();
+	if (document.subPane2.matchTop_dm.checked == true){
+		document.subPane2.bMode.value = document.subPane1.tMode.value;
+		change_Bottom_Pic();
+	}
+}
+function Bot_MC(){
+	e = document.getElementById("bottomImage");
+	e.src = LoadingImage.src;
+	change_Bottom_Pic();
+	if (document.subPane2.matchTop_dm.checked == true){
+		document.subPane1.tMode.value = document.subPane2.bMode.value;
+		change_Top_Pic();
+	}
+}
+function tPack_C(){
+	e = document.getElementById("topImage");
+	e.src = LoadingImage.src;
+	change_Top_Pic();
+	if (document.subPane2.matchTop_pack.checked == true){
+		document.subPane2.bPack.value = document.subPane1.tPack.value;
+		change_Bottom_Pic();
+	}
+}
+function bPack_C(){
+	e = document.getElementById("bottomImage");
+	e.src = LoadingImage.src;
+	change_Bottom_Pic();
+	if (document.subPane2.matchTop_pack.checked == true){
+		document.subPane1.tPack.value = document.subPane2.bPack.value;
+		change_Top_Pic();
+	}
+}
+function matchTop_Ch(){
+	Top_MC();
+}
+function matchTopPack_Ch(){
+	tPack_C();
+}
+function change_Top_Pic(){
+    var topPic = document.subPane1.tMode.value + document.subPane1.tPack.value;
+    e = document.getElementById("topImage");
+	e.src = topPic;
+	if ((document.subPane1.tMode.value == "images/Sweep/")||(document.subPane2.bMode.value == "images/Sweep/")){
+		e = document.getElementById("chart1");
+		e.src = "images/MagsChart.png";
+	} else{
+		e = document.getElementById("chart1");
+		e.src = "images/BlankChart.jpg";
+	}
+}
+function change_Bottom_Pic(){
+	var bottomPic = document.subPane2.bMode.value + document.subPane2.bPack.value;
+	e = document.getElementById("bottomImage");
+	e.src = bottomPic;
+	if ((document.subPane1.tMode.value == "images/Sweep/")||(document.subPane2.bMode.value == "images/Sweep/")){
+		e = document.getElementById("chart1");
+		e.src = "images/MagsChart.png";
+	} else{
+		e = document.getElementById("chart1");
+		e.src = "images/BlankChart.jpg";
+	}
+}
+function but_TopNext(){
+	a = document.subPane1.tPack.selectedIndex + 1;
+	if (a > NumSRC) {a = 0;}
+	document.subPane1.tPack.selectedIndex = a;
+	tPack_C();
+}
+function but_TopPrev(){
+	a = document.subPane1.tPack.selectedIndex - 1;
+	if (a < 0) {a = NumSRC;}
+	document.subPane1.tPack.selectedIndex = a;
+	tPack_C();
+}
+function but_BotNext(){
+	a = document.subPane2.bPack.selectedIndex + 1;
+	if (a > NumSRC) {a = 0;}
+	document.subPane2.bPack.selectedIndex = a;
+	bPack_C();
+}
+function but_BotPrev(){
+	a = document.subPane2.bPack.selectedIndex - 1;
+	if (a < 0) {a = NumSRC;}
+	document.subPane2.bPack.selectedIndex = a;
+	bPack_C();
+}
+function gup( name ){
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+		return "";
+	else
+		return results[1];
+}
+function loadSaved(){
+    var a, b, c, d;
+    a = parseInt(Spec.charAt(0)); b=parseInt(Spec.charAt(1)); c=parseInt(Spec.charAt(2)); d=parseInt(Spec.charAt(3));
+    if (a){document.subPane2.matchTop_pack.checked = true;}else{document.subPane2.matchTop_pack.checked = false;}
+    if (b){document.subPane2.matchTop_dm.checked = true;}else{document.subPane2.matchTop_dm.checked = false;}
+    document.subPane1.tMode.selectedIndex = c;
+    var temp = document.getElementById('tPack');
+    temp.value = tWhere + ".png";
+    document.subPane2.bMode.selectedIndex = d;
+    temp = document.getElementById('bPack');
+    temp.value = bWhere + ".png";
+
+    tPack_C();
+    bPack_C();
+}
+function Feed(){
+    if (Spec){
+        loadSaved();
+    }else{
+        if (tWhere=="" && bWhere==""){ //Make a reandom selection for both upper and lower slots
+            var tRandom = (Math.floor(Math.random() * NumSRC/2))+1;
+            var bRandom = Math.floor((NumSRC/2) + (Math.random() * ((NumSRC/2)+1)));
+            document.subPane1.tPack.selectedIndex = tRandom;
+            document.subPane2.bPack.selectedIndex = bRandom;
+            tPack_C();
+            bPack_C();
+       }
+        if (tWhere != "") {
+            tWhere += ".png";
+            document.subPane1.tPack.value = tWhere;
+            if (bWhere == ""){
+                document.subPane2.matchTop_pack.checked=true;
+                document.subPane2.matchTop_dm.checked=false;
+                document.subPane2.bMode.value = "images/Tone/";
+                tPack_C();
+            }else{
+                bWhere += ".png";
+                document.subPane2.bPack.value = bWhere;
+                tPack_C();
+                bPack_C();
+            }
+        }
+    }
+}
+function copyIt(){
+    var a, b, c, d;
+    if (document.subPane2.matchTop_pack.checked){a = 1;}else{a=0;}
+    if (document.subPane2.matchTop_dm.checked){b = 1;}else{b=0;}
+    c = document.subPane1.tMode.selectedIndex;
+    d = document.subPane2.bMode.selectedIndex;
+    var copyText = "https://src.infinitewave.ca/?Top=" + document.subPane1.tPack.value.substring(0, document.subPane1.tPack.value.length-4) + "&Bot=" + document.subPane2.bPack.value.substring(0, document.subPane2.bPack.value.length-4);
+    copyText += "&Spec=" + a+b+c+d;
+    navigator.clipboard.writeText(copyText).then(function() {
+        alert("Link sent to the clipboard.");
+    });
+}
+
+</script>
+</head>
+<body style="background-color:#3d4558; font-family: Tahoma, Geneva, sans-serif;	font-size:10px; ">
+		<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+			<div style="color: white; font-size: 12pt; text-align: center; width: 50%;">
+				<p style="font-size: 16pt; text-decoration: bold; padding-top: 20pt;">This website is a product of Canada and, as such, is not accessible from your location at this time.</p><button onclick="if(document.getElementById('explanation').style.visibility!='visible'){document.getElementById('explanation').style.visibility='visible';}else{document.getElementById('explanation').style.visibility='hidden';}">Why?</button>
+				<br>&nbsp;<br>
+				<div id="explanation" style="visibility: hidden;">
+					<p>
+						Curating the SRC project and dataset has been a labour of love, and I am quite proud of what we have managed to do since its inception on Glenn Meadows’ (RIP) Mastering Webboard, and of the impact the project has had on the industry. I am also proud that I have been able to serve it freely to the world without any advertising for so long. I acknowledge the fact that many Americans have contributed their time to the project for which I am forever grateful.
+					</p>
+					<p>
+						Although I am personally reasonably immune to what is happening (so far), millions of Canadians are not, and all of us are vulnerable to the game that is being played with our nation’s economy. I find myself deeply offended by the whole thing and this is my small way of expressing that.
+					<p>
+						Curating, developing, and hosting this project for the last almost 20 years has taken hundreds of hours of my life and thousands of dollars of my money. Coincidentally, the sweat of my brow and the cash in my pocket are the only two arrows that I have in my quiver. I think I am going to keep my bandwidth until I am satisfied that the tone of the rhetoric has dramatically shifted, and these crazy attacks on my country's economy have ceased. Rest assured that I have also cancelled my Paramount+ subscription. Although, I am not quite sure what they will do without my $10 keeping them afloat.
+					</p>
+					<p>Dave Horrocks<br>Infinite Wave Mastering</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
