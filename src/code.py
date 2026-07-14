@@ -34,7 +34,7 @@ def decode_and_normalize(raw_bytes):
         text = raw_bytes.decode('utf-8')
     except UnicodeDecodeError:
         # Если не вышло — читаем как Windows-1252
-        print("Распознали как UTF-8")
+        print("Распознали как cp1252")
         text = raw_bytes.decode('cp1252')
         
     # Нормализуем окончания строк
